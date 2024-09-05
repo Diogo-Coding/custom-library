@@ -11,7 +11,7 @@
 -->
 <template>
   <div class="relative">
-    <ion-input v-model="password" :label="label" :error-text="errorText" color="dark" :type="isShown ? 'text' : 'password'" aria-hidden="true" label-placement="floating" fill="outline" :placeholder="$t('initViews.placeholders.password')" @keydown.enter="action()" class="input-hide" @ion-input="change()"></ion-input>
+    <ion-input v-model="password" :label="label" :error-text="errorText" color="dark" :type="isShown ? 'text' : 'password'" aria-hidden="true" label-placement="floating" fill="outline" :placeholder="'Placeholder'" @keydown.enter="action()" class="input-hide" @ion-input="change()"></ion-input>
     <ion-button size="small" fill="clear" color="dark" aria-label="Show/hide" @click="toggleShow()" class="hide-button">
       <ion-icon slot="icon-only" :icon="isShown ? eyeOff : eye" aria-hidden="true"></ion-icon>
     </ion-button>

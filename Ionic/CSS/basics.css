@@ -1,3 +1,8 @@
+/**
+  * Do not use this CSS if you using TailwindCSS or any other library with default styles
+*/
+
+
 /* Texts */
 .code {
   white-space: pre;

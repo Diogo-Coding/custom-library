@@ -3,9 +3,9 @@
   <Transition name="fade-long" mode="out-in">
     <div id="splash-screen" v-if="visible">
       <img :src="SplashImage" :style="{ opacity: imageOpacity }" alt="Logo" class="logo">
-      <!-- Añadir logo del hotel abajo del logo de app cuando se carge (hotelSelected) -->
-      <div class="text-under-logo" :style="{ opacity: textOpacity }" v-if="showLogo && hotelSelected.id">
-        <img :src="getHotelImg()" alt="Hotel Selected Logo"/>
+      <!-- Añadir logo de app cuando se carge -->
+      <div class="text-under-logo" :style="{ opacity: textOpacity }" v-if="showLogo">
+        <img :src="getLogo()" alt="Logo"/>
       </div>
     </div>
   </Transition>
@@ -14,10 +14,7 @@
 <script>
 import { IonLabel } from '@ionic/vue';
 import { computed, ref } from 'vue';
-import SplashImage from '@/assets/images/Spring_Logo_White.jpg'
-import vulcanoLogo from '@/assets/images/logo-vulcano-color.png'
-import bitacoraLogo from '@/assets/images/logo-bitacora-color.png'
-import granaronaLogo from '@/assets/images/logo-granarona-color.png'
+import SplashImage from '@/assets/images/logo.jpg'
 import { onMounted } from 'vue';
 import store from '../store';
 
@@ -29,21 +26,9 @@ export default {
   setup() {
     const imageOpacity = ref(0); // Opacidad inicial de 0
     const textOpacity = ref(0); // Opacidad inicial de 0
-    const hotelSelected = computed(() => store.getters.getHotel || {})
 
-    const getHotelImg = () => {
-      return selectedHotelLogo(hotelSelected.value)
-    }
-
-    const selectedHotelLogo = (hotel) => {
-      if (!hotel) return null
-      if (hotel.id == 5) {
-        return vulcanoLogo
-      } else if (hotel.id == 6) {
-        return granaronaLogo
-      } else {
-        return bitacoraLogo
-      }
+    const getLogo = () => {
+      return SplashImage
     }
 
     onMounted(() => {
@@ -56,9 +41,8 @@ export default {
     return {
       SplashImage,
       imageOpacity,
-      hotelSelected,
       textOpacity,
-      getHotelImg
+      getLogo
     }
   }
 }

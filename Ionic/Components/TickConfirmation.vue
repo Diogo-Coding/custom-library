@@ -1,26 +1,19 @@
 <template>
   <div class="wrapper">
-    <svg class="checkmark" :style="`--color-hotel: var(--ion-color-${hotelSelected.name});`" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
     {{ textConfimation }}
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { onBeforeMount } from 'vue';
-import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   props: ['textConfimation'],
   emits: [],
   components: {},
-  setup(props, ctx) {
-    const store = useStore()
-    const hotelSelected = store.getters.getHotel
-
+  setup() {
     return {
-      hotelSelected
     }
   }
 }
@@ -45,7 +38,7 @@ export default {
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: var(--color-hotel);
+  stroke: var(--color-custom);
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
 }
@@ -59,7 +52,7 @@ export default {
   stroke: #fff;
   stroke-miterlimit: 10;
   margin: 10% auto;
-  box-shadow: inset 0px 0px 0px var(--color-hotel);
+  box-shadow: inset 0px 0px 0px var(--color-custom);
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
 }
 
@@ -90,7 +83,7 @@ export default {
 
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px var(--color-hotel);
+    box-shadow: inset 0px 0px 0px 30px var(--color-custom);
   }
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
   <div id="alert">
-    <ion-toast ref="toast" :is-open="isOpen" :message="$t('guestViews.homePage.reminderToast')" :buttons="toastButtons"
-      @didDismiss="handleDidDismiss()" :color="hotelSelected.name" swipe-gesture="vertical" position="bottom"
-      position-anchor="anchorToastGuest" mode="ios" layout="stacked"></ion-toast>
+    <ion-toast ref="toast" :is-open="isOpen" message="Message" :buttons="toastButtons"
+      @didDismiss="handleDidDismiss()" color="success" swipe-gesture="vertical" position="bottom"
+      position-anchor="anchorToast" mode="ios" layout="stacked"></ion-toast>
   </div>
-  <div id="anchorToastGuest" class="bottom-anchor"></div>
+  <div id="anchorToast" class="bottom-anchor"></div>
 </template>
 
 <script>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
-import { IonButton, IonToast, createAnimation, createGesture } from '@ionic/vue'
+import { IonButton, IonToast, createGesture } from '@ionic/vue'
 import { logoPwa } from 'ionicons/icons';
 import { isPlatform } from '@ionic/vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -26,13 +26,12 @@ export default {
     const route = useRoute()
     const isOpen = ref(false)
     const toast = ref(null)
-    const hotelSelected = computed(() => store.getters.getHotel || {})
     const { t } = useI18n()
     const INTRO_ANIMATION_TIME = 500
 
     const toastButtons = [
       {
-        text: t('guestViews.homePage.close'),
+        text: 'Close',
         role: 'cancel',
         cssClass: ['p-button-link-color', 'button-continue'],
         handler: () => {
@@ -40,7 +39,7 @@ export default {
         },
       },
       {
-        text: t('guestViews.homePage.login'),
+        text: 'Login',
         role: 'info',
         cssClass: ['p-button-link-color', 'button-continue'],
         handler: () => {
@@ -48,10 +47,6 @@ export default {
         },
       }
     ];
-
-    function checkRoute() {
-      return route.meta.isGuestMode
-    }
 
     function goLogin() {
       router.replace('/login')
@@ -162,7 +157,7 @@ export default {
 
     onBeforeUnmount(async () => {
       await closeToast()
-      console.log('%c [PROCESO] %c Alert Guest Mode Unmounted ', 'font-weight: bold; letter-spacing: 1px; color: #fff; padding: 2px; border-radius: 2px;', 'background: #00695c; color: #fff; padding: 2px; border-radius: 2px;', isOpen.value);
+      console.log('%c [PROCESO] %c Dismissible Toast Unmounted ', 'font-weight: bold; letter-spacing: 1px; color: #fff; padding: 2px; border-radius: 2px;', 'background: #00695c; color: #fff; padding: 2px; border-radius: 2px;', isOpen.value);
     })
 
     return {
@@ -170,9 +165,7 @@ export default {
       toast,
       toastButtons,
       logoPwa,
-      hotelSelected,
       isPlatform,
-      checkRoute,
       closeToast,
       handleDidDismiss,
     }
