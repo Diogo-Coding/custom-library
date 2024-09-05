@@ -1,0 +1,21 @@
+{
+  "Default Vue File": {
+    "prefix": "default-vue",
+    "body": [
+      "<template>",
+      "  <div>$0</div>",
+      "</template>",
+      "",
+      "<script setup>",
+      "import { ref } from 'vue';",
+      "import { useStore } from 'vuex';",
+      "",
+      "</script>",
+      "",
+      "<style scoped>",
+      "",
+      "</style>"
+    ],
+    "description": "Mi Plantilla Vue Personalizada"
+  }
+}
