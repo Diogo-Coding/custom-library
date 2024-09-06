@@ -1,5 +1,6 @@
 // ======================================================== \\
 EXTENTIONS = [
+  "AutoHotkey Plus",
   "Auto Rename Tag",
   "Better Comments",
   "Error Lens",
@@ -12,8 +13,10 @@ EXTENTIONS = [
   "Vue 3 Snippets",
   "WSL",
   "ESLint",
+  "Extension Pack for Java",
   "Format HTML in PHP",
   "GitLens",
+  "Gradle for Java",
   "Import Cost",
   "Path Intellisense",
   "Rainbow CSV",
@@ -24,6 +27,7 @@ EXTENTIONS = [
   "Data Preview",
   "es6-string-html",
   "Ionic",
+  "Language Support for Java(TM) by Red Hat",
   "Regex Previewer",
   "Turbo Console Log",
   "GitHub Copilot",
@@ -31,5 +35,24 @@ EXTENTIONS = [
   "Prettier",
   "Regex Previewer",
   "Supermaven",
-  "Date & Time",  
+  "Maven for java",
+  "Date & Time",
+  "Debugger for Java",
+  "Markdown All in One",
+  "Laravel Blade Snippets",
+  "Laravel Extra IntelliSense",
+  "Live Preview",
+  "Node.js Modules IntelliSense",
+  "npm IntelliSense",
+  "Tailwind CSS IntelliSense",
+  "PHP IntelliSense",
+  "Project Manager for Java",
+  "Test Runner for Java",
+  // ======================================================== \\
+  // Custom Extensions \\
+  // ======================================================== \\
+  "Night Owl",
+  "One Dark Pro",
+  "Cobalt Next",
+  "HackTheBox",
 ]
