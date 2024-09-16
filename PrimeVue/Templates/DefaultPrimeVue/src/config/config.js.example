@@ -1,0 +1,10 @@
+let config = {
+  // ==========[ Local / Production ]========================== \\
+  URL_BACK: import.meta.env.VITE_URL_BACK,
+  ERROR_TOAST_LIFE: 10000,
+  SUCCESS_TOAST_LIFE: 5000
+}
+
+export const URL_BACK = config.URL_BACK
+export const ERROR_TOAST_LIFE = config.ERROR_TOAST_LIFE
+export const SUCCESS_TOAST_LIFE = config.SUCCESS_TOAST_LIFE
