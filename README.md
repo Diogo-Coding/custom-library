@@ -1,7 +1,7 @@
 # Custom Library
 A small list of utilities/componentes and small repositories free to use from diverse frameworks and languages
 
-## ! IMPORTANT !
+## [!CAUTION]
 This is a personal repository, so it is not guaranteed to be updated or maintained. If you want to use it, please make sure to check the repository's README file for more information. If you gonna use this for a project, please consider reviewing the code and making sure it's safe and secure to your standards and requirements.
 
 ## Folders
