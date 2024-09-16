@@ -37,48 +37,7 @@ const routes = [ // Routes
       requiresAuth: true,
       title: 'Home'
     },
-    children: [
-      {
-        path: '/main/home',
-        name: 'Home',
-        component: HomeView,
-        meta: {
-          title: 'Home'
-        }
-      },
-      {
-        path: '/main/history',
-        name: 'History',
-        component: HistoryView,
-        meta: {
-          title: 'Historial'
-        },
-      },
-      {
-        path: '/main/history/view',
-        name: 'History View',
-        component: RowView,
-        meta: {
-          title: 'Editar registro'
-        }
-      },
-      {
-        path: '/main/history/add',
-        name: 'History Add',
-        component: RowAdd,
-        meta: {
-          title: 'Insertar registro'
-        }
-      },
-      {
-        path: '/preferences',
-        name: 'Preferences',
-        component: UserPreferences,
-        meta: {
-          title: 'Configuración'
-        }
-      }
-    ]
+    children: []
   },
   {
     path: '/errors/something-went-wrong',
