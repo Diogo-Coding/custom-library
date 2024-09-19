@@ -1,0 +1,121 @@
+// === Initial Config ==========================
+import { createApp } from "vue";
+import PrimeVue from "primevue/config";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+
+// === PrimeVue Config =========================
+import Aura from "@primevue/themes/aura";
+import "primeicons/primeicons.css";
+import primeLangES from "@/langs/es.json";
+
+// === PrimeVue Plugins ========================
+import ConfirmationService from "primevue/confirmationservice";
+import ToastService from "primevue/toastservice";
+import { definePreset } from "@primevue/themes";
+
+// === CSS Config ==============================
+import "@/styles/basics.css";
+import "@/styles/colors.css";
+import "@/styles/transitions.css";
+import "@/styles/general.css";
+import "@/styles/tailwind.css";
+import "normalize.css/normalize.css";
+
+// === Font Awesome Icons ======================
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+library.add(fas);
+
+// === Custom Preset Theme =====================
+const MyPreset = definePreset(Aura, {
+  semantic: {
+    primary: {
+      50: "{blue.50}",
+      100: "{blue.100}",
+      200: "{blue.200}",
+      300: "{blue.300}",
+      400: "{blue.400}",
+      500: "{blue.500}",
+      600: "{blue.600}",
+      700: "{blue.700}",
+      800: "{blue.800}",
+      900: "{blue.900}",
+      950: "{blue.950}",
+    },
+    colorScheme: {
+      light: {
+        surface: {
+          0: "white",
+          50: "{zinc.50}",
+          100: "{zinc.100}",
+          200: "{zinc.200}",
+          300: "{zinc.300}",
+          400: "{zinc.400}",
+          500: "{zinc.500}",
+          600: "{zinc.600}",
+          700: "{zinc.700}",
+          800: "{zinc.800}",
+          900: "{zinc.900}",
+          950: "{zinc.950}",
+        },
+      },
+      dark: {
+        surface: {
+          0: "#ffffff",
+          50: "{slate.50}",
+          100: "{slate.100}",
+          200: "{slate.200}",
+          300: "{slate.300}",
+          400: "{slate.400}",
+          500: "{slate.500}",
+          600: "{slate.600}",
+          700: "{slate.700}",
+          800: "{slate.800}",
+          900: "{slate.900}",
+          950: "{slate.950}",
+        },
+      },
+    },
+  },
+});
+
+// === Functions ===============================
+
+function setDarkMode() {
+  const darkMode = store.getters.getPreferences ? store.getters.getPreferences.darkMode : false;
+  document.documentElement.classList.toggle('dark', darkMode);
+}
+
+function setFontSize() {
+  const fontSize = store.getters.getPreferences ? store.getters.getPreferences.fontSize : 14;
+  document.documentElement.style.setProperty('--font-size', fontSize + 'px')
+}
+
+// === Init App ================================
+setDarkMode();
+setFontSize();
+createApp(App);
+const app = createApp(App);
+
+app.component("font-awesome-icon", FontAwesomeIcon);
+app.use(PrimeVue, {
+  locale: primeLangES,
+  ripple: true,
+  theme: {
+    preset: MyPreset,
+    options: {
+      prefix: "p",
+      darkModeSelector: ".dark",
+    },
+  },
+});
+app.use(store);
+app.use(router);
+app.use(ConfirmationService);
+app.use(ToastService);
+// ----- //
+app.mount("#app");

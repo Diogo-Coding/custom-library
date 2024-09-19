@@ -1,6 +1,5 @@
 <template>
-  <div class="main-page">
-    <NavigationBar :borderDivider="true" />
+  <div class="main-page bg-white dark:bg-gray-900 transition-colors">
     <div class="main-container">
       <router-view v-slot="{ Component, route }">
         <Transition :name="route.meta.transition || 'fade'" mode="out-in">
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-import NavigationBar from '@/components/NavigationBar.vue';
 </script>
 
 <style scoped>
@@ -29,6 +27,6 @@ import NavigationBar from '@/components/NavigationBar.vue';
 }
 .main-container {
   overflow-y: auto;
-  height: calc(100vh - 60px);
+  height: 100vh;
 }
 </style>

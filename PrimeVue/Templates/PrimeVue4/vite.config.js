@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 
 import Components from 'unplugin-vue-components/vite';
-import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
+import { PrimeVueResolver } from '@primevue/auto-import-resolver';
 
 
 // https://vitejs.dev/config/
@@ -28,7 +28,7 @@ export default defineConfig({
       key: fs.readFileSync(path.resolve(__dirname, './localhost-key.pem')),
       cert: fs.readFileSync(path.resolve(__dirname, './localhost.pem')),
     },
-    port: 5175, // Puerto para el servidor de desarrollo
+    port: 5180, // Puerto para el servidor de desarrollo
     open: true
   },
   resolve: {

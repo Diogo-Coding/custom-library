@@ -5,6 +5,7 @@ export default createStore({
   state: {
     user: null,
     isLoggedIn: false,
+    hotel: null,
     token: null,
     preferences: {
       searchSideBar: true,
@@ -12,8 +13,9 @@ export default createStore({
       saveTablePreferences: true, // Guarda filtros, orden y paginación en localStorage
       saveTablePreferencesLifetime: 'local', // [local, session]
       tableSize: 'normal', // [small, normal, large]
-      columnsToShow: ['email', 'username'],
-      fontSize: 16
+      columnsToShow: ['email', 'hotel', 'no_reserva', 'dia_llegada_vuelo', 'dia_salida_vuelo', 'no_vuelo_llegada', 'estado'],
+      fontSize: 14,
+      darkMode: false
     },
   },
   getters: {
@@ -23,12 +25,15 @@ export default createStore({
     getIsLoggedIn: state => {
       return state.isLoggedIn
     },
+    getHotel: state => {
+      return state.hotel
+    },
     getPreferences: state => {
       return state.preferences
     },
     getToken: state => {
       return state.token
-    }
+    },
   },
   mutations: {
     SET_USER(state, user) {
@@ -36,6 +41,9 @@ export default createStore({
     },
     SET_IS_LOGGED_IN(state, status) {
       state.isLoggedIn = status
+    },
+    SET_HOTEL(state, hotel) {
+      state.hotel = hotel
     },
     SET_PREFERENCE(state, preference) {
       // Recibe un objeto con las preferencias a cambiar, por ejemplo { searchSideBar: false }
@@ -53,7 +61,7 @@ export default createStore({
     },
     SET_TOKEN(state, token) {
       state.token = token
-    }
+    },
   },
   actions: {
     setUser(context, user) {
@@ -61,6 +69,9 @@ export default createStore({
     },
     setIsLoggedIn(context, status) {
       context.commit('SET_IS_LOGGED_IN', status)
+    },
+    setHotel(context, hotel) {
+      context.commit('SET_HOTEL', hotel)
     },
     setPreference(context, preference) {
       context.commit('SET_PREFERENCE', preference)
@@ -74,7 +85,7 @@ export default createStore({
   },
   modules: {},
   plugins: [createMultiTabState({
-    statesPaths: ['token', 'user', 'isLoggedIn', 'preferences'],
+    statesPaths: ['token', 'user', 'isLoggedIn', 'hotel', 'preferences'],
     key: 'data-and-preferences',
   })],
 })

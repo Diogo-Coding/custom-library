@@ -1,32 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
 
-import { checkAuth } from '@/utilities/auth.js'
-
 import NotFound from '../views/Errors/NotFound.vue'
 import SomethingWentWrong from '../views/Errors/SomethingWentWrong.vue'
 
-import LoginView from '../views/LoginView.vue'
-
-import HistoryView from '../views/MainViews/HistoryView.vue'
-import RowView from '../views/MainViews/HistoryOptions/RowView.vue'
-import RowAdd from '../views/MainViews/HistoryOptions/RowAdd.vue'
-import UserPreferences from '../views/MainViews/User/UserSettings.vue'
 import HomeView from '../views/MainViews/HomeView.vue'
 import MainRouter from '@/views/MainRouter.vue'
 
 const routes = [ // Routes
   {
     path: '/',
-    redirect: checkAuth()
-  },
-  {
-    path: '/login',
-    name: 'Login Page',
-    component: LoginView,
-    meta: {
-      title: 'Login'
-    }
+    redirect: '/main'
   },
   {
     path: '/main',
@@ -37,7 +21,16 @@ const routes = [ // Routes
       requiresAuth: true,
       title: 'Home'
     },
-    children: []
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: HomeView,
+        meta: {
+          title: 'Home'
+        }
+      }
+    ]
   },
   {
     path: '/errors/something-went-wrong',
@@ -108,8 +101,8 @@ router.onError((err) => {
 });
 
 router.beforeEach((to, from) => {
-  if (to.meta.title) document.title = 'Transfers - ' +  to.meta.title
-  else document.title = 'Control de Transfer - Spring'
+  if (to.meta.title) document.title = 'Default Page - ' +  to.meta.title
+  else document.title = 'Default Page'
   const additional_info = {
     from: from,
     to: to,
@@ -126,15 +119,6 @@ router.beforeEach((to, from) => {
     'background: transparent',
     'background: #334155; color: #badaff; padding: 2px; border-radius: 2px;', additional_info
   );
-
-  if (to.path == '/login' && store.getters.getIsLoggedIn && store.getters.getUser) {
-    return '/main'
-  }
-
-  // Check if auth is required
-  if (to.meta.requiresAuth && !store.getters.getIsLoggedIn) {
-    return '/login'
-  }
 })
 
 export default router
