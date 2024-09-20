@@ -9,5 +9,4 @@ import { useStore } from 'vuex';
 </script>
 
 <style scoped>
-
 </style>

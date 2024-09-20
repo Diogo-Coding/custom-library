@@ -3,12 +3,12 @@
     All made with tailwind classes so you can just delete template and start your own page,
     also you can copy this view and use it later if needed.
   -->
-  <div class="p-10 flex flex-col gap-4 items-center justify-center w-full h-full">
+  <div class="container mx-auto p-10 flex flex-col gap-4 items-center justify-center w-full h-full">
     <section class="flex flex-col gap-4 items-center justify-center text-slate-700">
       <!-- Header -->
       <header class="flex flex-col gap-4 items-center justify-center">
         <div>
-          <img src="@/assets/vue.svg" alt="Logo" class="w-32 h-32">
+          <img src="@/assets/favicon.svg" alt="Logo" class="w-32 h-32">
         </div>
         <div>
           <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
