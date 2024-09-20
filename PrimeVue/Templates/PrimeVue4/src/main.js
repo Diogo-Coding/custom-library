@@ -23,9 +23,11 @@ import "@/styles/general.css";
 import "@/styles/tailwind.css";
 import "normalize.css/normalize.css";
 
+//! Highly recommended to import specific icons you need instead of whole library (You might not need all icons and import all is >1MB)
+// TODO: Change from import all to import only what you need
 // === Font Awesome Icons ====================== // Enable for Font Awesome Icons, if not use PrimeVue Icons or imported SVG icons
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 // import { library } from "@fortawesome/fontawesome-svg-core";
-// import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 // import { fas } from "@fortawesome/free-solid-svg-icons";
 // library.add(fas);
 
@@ -104,7 +106,7 @@ setFontSize();
 createApp(App);
 const app = createApp(App);
 
-// app.component("font-awesome-icon", FontAwesomeIcon); // Enable for Font Awesome Icons, if not use PrimeVue Icons or imported SVG icons
+app.component("font-awesome-icon", FontAwesomeIcon); // Enable for Font Awesome Icons component, if not use PrimeVue Icons or imported SVG icons
 app.use(PrimeVue, {
   locale: primeLangES,
   ripple: true,
