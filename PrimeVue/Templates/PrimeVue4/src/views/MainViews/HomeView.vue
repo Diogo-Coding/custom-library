@@ -8,9 +8,9 @@
       <div>
         <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
       </div>
-      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl shadow-md p-6">
+      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl dark:border dark:border-slate-500 dark:border-solid p-6" :class="['dark', 'system'].includes(localTheme) ? 'custom-shadow-cyan' : ''">
         <div>
-          <h4 class="text-xl dark:text-slate-50 m-0">Options Demo</h4>
+          <h4 class="text-xl dark:text-slate-50 m-0">Options</h4>
         </div>
         <Divider class="m-0"/>
         <div class="flex flex-col gap-4 justify-center pt-2">
@@ -20,6 +20,7 @@
             <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
               <Button v-for="theme in themeOptions" :key="theme" :label="theme.name" :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon" :text="theme.value != localTheme" class="w-full" @click="theme.function()" />
             </div>
+            <Button label="Toggle Theme" severity="primary" text @click="toggleDarkMode()" />
           </div>
           <!-- Font Size Selector -->
           <div class="flex flex-col gap-2 pb-4">
@@ -54,5 +55,10 @@ const localFontSize = computed(() => store.getters.getPreferences.fontSize);
 </script>
 
 <style scoped>
-
+.custom-shadow-cyan {
+  --tw-shadow-color: rgb(6 182 212 / 0.5);
+  --tw-shadow-colored: 0 0 450px -12px var(--tw-shadow-color);
+  --tw-shadow: var(--tw-shadow-colored);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 </style>
