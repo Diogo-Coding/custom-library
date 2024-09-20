@@ -1,11 +1,11 @@
-:root {
+/* :root {
   --highlight-bg: #e4f1ff;
-  /* --highlight-text-color: #001e3f; */
+  --highlight-text-color: #001e3f;
 }
 ::selection {
   background-color: var(--highlight-bg);
   color: var(--highlight-text-color);
-}
+} */
 .p-toast-message-error *::selection {
   background-color: #ff00006e;
   color: black;

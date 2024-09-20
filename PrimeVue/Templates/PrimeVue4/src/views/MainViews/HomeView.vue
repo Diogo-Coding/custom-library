@@ -1,21 +1,36 @@
 <template>
+  <!-- Information:
+    All made with tailwind classes so you can just delete template and start your own page,
+    also you can copy this view and use it later if needed.
+  -->
   <div class="p-10 flex flex-col gap-4 items-center justify-center w-full h-full">
-    <div class="flex flex-col gap-4 items-center justify-center">
+    <div class="flex flex-col gap-4 items-center justify-center text-slate-700">
       <div>
-        <h1 class="m-0 text-slate-700 dark:text-slate-100 bold-900">PrimeVue 4 Template</h1>
+        <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
       </div>
-      <div class="flex flex-col gap-4 justify-center bg-slate-100 rounded-2xl shadow-md p-4">
+      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl shadow-md p-6">
         <div>
-          <h4 class="text-xl text-gray-600 m-0 pb-4">Options</h4>
+          <h4 class="text-xl dark:text-slate-50 m-0">Options Demo</h4>
         </div>
-        <div>
-          <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
-        </div>
-        <div class="flex items-center gap-1 p-2 bg-white shadow rounded-lg">
-          <Button label="Pequeña" :severity="localFontSize == 12 ? 'primary' : 'secondary'" :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
-          <Button label="Mediana" :severity="localFontSize == 14 ? 'primary' : 'secondary'" :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
-          <Button label="Normal" :severity="localFontSize == 16 ? 'primary' : 'secondary'" :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
-          <Button label="Grande" :severity="localFontSize == 18 ? 'primary' : 'secondary'" :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+        <Divider class="m-0"/>
+        <div class="flex flex-col gap-4 justify-center pt-2">
+          <!-- Theme Selector -->
+          <div class="flex flex-col gap-2 pb-4">
+            <h4 class="m-0 dark:text-slate-300">Theme</h4>
+            <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
+              <Button v-for="theme in themeOptions" :key="theme" :label="theme.name" :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon" :text="theme.value != localTheme" class="w-full" @click="theme.function()" />
+            </div>
+          </div>
+          <!-- Font Size Selector -->
+          <div class="flex flex-col gap-2 pb-4">
+            <h4 class="m-0 dark:text-slate-300">Font Size</h4>
+            <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
+              <Button label="Pequeña" :severity="localFontSize == 12 ? 'primary' : 'secondary'" :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
+              <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'" :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
+              <Button label="Mediana" :severity="localFontSize == 16 ? 'primary' : 'secondary'" :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
+              <Button label="Grande" :severity="localFontSize == 18 ? 'primary' : 'secondary'" :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -25,9 +40,15 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import { toggleDarkMode, setFontSize } from '@/utilities/preferencesUtils';
+import { toggleDarkMode, setLightMode, setDarkMode, setSystemMode, setFontSize } from '@/utilities/preferencesUtils';
 
 const store = useStore();
+const themeOptions = ref([
+  { name: 'Light', value: 'light', icon: 'pi pi-sun', function: setLightMode },
+  { name: 'Dark', value: 'dark', icon: 'pi pi-moon', function: setDarkMode },
+  { name: 'System', value: 'system', icon: 'pi pi-cog', function: setSystemMode },
+]);
+const localTheme = computed(() => store.getters.getPreferences.themeMode);
 const localFontSize = computed(() => store.getters.getPreferences.fontSize);
 
 </script>
