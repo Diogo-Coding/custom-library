@@ -5,13 +5,18 @@
   -->
   <div class="p-10 flex flex-col gap-4 items-center justify-center w-full h-full">
     <div class="flex flex-col gap-4 items-center justify-center text-slate-700">
-      <div>
-        <img src="@/assets/vue.svg" alt="Logo" class="w-32 h-32">
-      </div>
-      <div>
-        <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
-      </div>
-      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl dark:border dark:border-slate-500 dark:border-solid p-6" :class="['dark', 'system'].includes(localTheme) ? 'custom-shadow-emerald' : ''">
+      <!-- Header -->
+      <header class="flex flex-col gap-4 items-center justify-center">
+        <div>
+          <img src="@/assets/vue.svg" alt="Logo" class="w-32 h-32">
+        </div>
+        <div>
+          <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
+        </div>
+      </header>
+
+      <!-- Main -->
+      <main class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl dark:border dark:border-slate-500 dark:border-solid p-6" :class="['dark', 'system'].includes(localTheme) ? 'custom-shadow-emerald' : ''">
         <div>
           <h4 class="text-xl dark:text-slate-50 m-0">Options</h4>
         </div>
@@ -36,7 +41,20 @@
             </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer flex items-center justify-center gap-4 dark:text-slate-50">
+        <div class="flex items-center gap-2">
+          <i class="pi pi-github"></i>
+          <a href="https://github.com/Diogo-Coding" target="_blank" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">Github</a>
+        </div>
+        <span class="text-sm dark:text-slate-400 select-none">|</span>
+        <div class="flex items-center gap-2">
+          <i class="pi pi-prime"></i>
+          <a href="https://v3.primevue.org/autocomplete/" target="_blank" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">PrimeVue</a>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
