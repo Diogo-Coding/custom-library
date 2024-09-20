@@ -4,7 +4,7 @@
     also you can copy this view and use it later if needed.
   -->
   <div class="p-10 flex flex-col gap-4 items-center justify-center w-full h-full">
-    <div class="flex flex-col gap-4 items-center justify-center text-slate-700">
+    <section class="flex flex-col gap-4 items-center justify-center text-slate-700">
       <!-- Header -->
       <header class="flex flex-col gap-4 items-center justify-center">
         <div>
@@ -45,17 +45,17 @@
 
       <!-- Footer -->
       <footer class="footer flex items-center justify-center gap-4 dark:text-slate-50">
-        <div class="flex items-center gap-2">
+        <p class="flex items-center gap-2">
           <i class="pi pi-github"></i>
           <a href="https://github.com/Diogo-Coding" target="_blank" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">Github</a>
-        </div>
+        </p>
         <span class="text-sm dark:text-slate-400 select-none">|</span>
-        <div class="flex items-center gap-2">
+        <p class="flex items-center gap-2">
           <i class="pi pi-prime"></i>
           <a href="https://v3.primevue.org/autocomplete/" target="_blank" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">PrimeVue</a>
-        </div>
+        </p>
       </footer>
-    </div>
+    </section>
   </div>
 </template>
 
