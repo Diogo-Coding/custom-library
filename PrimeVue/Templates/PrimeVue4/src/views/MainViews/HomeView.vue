@@ -8,7 +8,7 @@
       <div>
         <h1 class="m-0 dark:text-slate-50 bold-900">PrimeVue 4 Template</h1>
       </div>
-      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl dark:border dark:border-slate-500 dark:border-solid p-6" :class="['dark', 'system'].includes(localTheme) ? 'custom-shadow-cyan' : ''">
+      <div class="flex flex-col justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl dark:border dark:border-slate-500 dark:border-solid p-6" :class="['dark', 'system'].includes(localTheme) ? 'custom-shadow-emerald' : ''">
         <div>
           <h4 class="text-xl dark:text-slate-50 m-0">Options</h4>
         </div>
@@ -57,8 +57,14 @@ const localFontSize = computed(() => store.getters.getPreferences.fontSize);
 <style scoped>
 .custom-shadow-cyan {
   --tw-shadow-color: rgb(6 182 212 / 0.5);
-  --tw-shadow-colored: 0 0 450px -12px var(--tw-shadow-color);
   --tw-shadow: var(--tw-shadow-colored);
+  --tw-shadow-colored: 0 0 450px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.custom-shadow-emerald {
+  --tw-shadow-color: #10b981;
+  --tw-shadow: var(--tw-shadow-colored);
+  --tw-shadow-colored: 0 0 450px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 </style>
