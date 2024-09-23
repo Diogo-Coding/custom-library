@@ -236,3 +236,48 @@
   border-radius: 10px;
   min-height: 1px;
 }
+
+/** ===== Custom Things ===== **/
+/** ========================= **/
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 0.375rem;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgb(249 250 251);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track:hover {
+  background: rgb(249 250 251);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: #e4e4e4;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d3d3d3
+}
+
+ol.custom-counter {
+  list-style: none;
+  counter-reset: item;
+}
+ol.custom-counter li {
+  counter-increment: item;
+  margin-bottom: 5px;
+}
+ol.custom-counter li:before {
+  margin-right: 8px;
+  width: 1em;
+  text-align: center;
+  display: inline-block;
+  content: counter(item)".";
+  font-weight: 700;
+}
+

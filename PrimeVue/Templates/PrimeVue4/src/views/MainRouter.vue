@@ -1,5 +1,11 @@
+<!-- Information:
+  Template page for transitioned views, 
+  this example, every page from "/main" route will be transitioned and managed from here.
+  You can copy this view and use it for another route pointing for another page.
+  Also lets you customize styles for expecific section pages.
+-->
 <template>
-  <div class="main-page bg-white dark:bg-gray-900 transition-colors">
+  <div class="main-page bg-white dark:bg-gray-900"> <!-- /main will have the background color different than the rest of the pages -->
     <div class="main-container">
       <router-view v-slot="{ Component, route }">
         <Transition :name="route.meta.transition || 'fade'" mode="out-in">
@@ -26,7 +32,7 @@
   overflow: hidden;
 }
 .main-container {
-  overflow-y: auto;
+  overflow-y: hidden;
   height: 100vh;
 }
 </style>

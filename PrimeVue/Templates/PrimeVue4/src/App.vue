@@ -1,18 +1,19 @@
+<!-- Information:
+  Do not add any comments at the start inside the template tags, 
+  because it will broke the template rendering when using the "mode" prop in "Transition" elements.
+-->
 <template>
   <Toast />
-  <router-view v-slot="{ Component, route }">
+  <RouterView v-slot="{ Component, route }">
     <Transition :name="route.meta.transition || 'fade'" mode="out-in">
       <component :is="Component" />
     </Transition>
-  </router-view>
+  </RouterView>
 </template>
 
 <script setup>
 import Toast from 'primevue/toast';
-import { onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { URL_BACK } from './config/config';
-import router from './router';
 import { setSystemMode } from '@/utilities/preferencesUtils';
 
 const store = useStore();

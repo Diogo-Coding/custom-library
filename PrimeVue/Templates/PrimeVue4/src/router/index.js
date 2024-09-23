@@ -6,6 +6,7 @@ import SomethingWentWrong from '../views/Errors/SomethingWentWrong.vue'
 
 import HomeView from '../views/MainViews/HomeView.vue'
 import MainRouter from '@/views/MainRouter.vue'
+import ComponentView from '../views/MainViews/OtherView.vue'
 
 const routes = [ // Routes
   {
@@ -19,7 +20,7 @@ const routes = [ // Routes
     redirect: '/main/home',
     meta: {
       requiresAuth: true,
-      title: 'Home'
+      title: 'Redirect Home'
     },
     children: [
       {
@@ -28,6 +29,14 @@ const routes = [ // Routes
         component: HomeView,
         meta: {
           title: 'Home'
+        }
+      },
+      {
+        path: 'other',
+        name: 'Other Page',
+        component: ComponentView,
+        meta: {
+          title: 'Other Page'
         }
       }
     ]
@@ -101,8 +110,8 @@ router.onError((err) => {
 });
 
 router.beforeEach((to, from) => {
-  if (to.meta.title) document.title = 'Default Page - ' +  to.meta.title
-  else document.title = 'Default Page'
+  if (to.meta.title) document.title = 'Template App - ' +  to.meta.title
+  else document.title = 'Template App'
   const additional_info = {
     from: from,
     to: to,
