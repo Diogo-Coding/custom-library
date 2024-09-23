@@ -9,7 +9,7 @@ A small list of utilities/componentes and small repositories free to use from di
 - [NativeJS](NativeJS)
 - [Node](Node)
 - [PrimeVue](PrimeVue)
-  - [PrimeVue4🔥](PrimeVue/Templates/PrimeVue4)
+  - 🔥 [PrimeVue4](PrimeVue/Templates/PrimeVue4)
 - [Recommended](Recommended)
 - [Utilities](Utilities)
 - [Snippets](Snippets)
