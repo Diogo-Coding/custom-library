@@ -9,5 +9,6 @@
   }
   html {
     font-family: 'Inter var', sans-serif;
+    font-feature-settings: "cv11";
   }
 }
