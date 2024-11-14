@@ -7,7 +7,7 @@
     @mouseleave="onMouseLeave"
   >
     <div class="inner">
-      <div class="info-box relative">
+      <div class="info-box h-full relative">
         <div class="box-content flex flex-col justify-between h-full">
           <slot />
         </div>
@@ -69,13 +69,12 @@ function onMouseLeave() {
 <style scoped>
 /* =============================== */
 /* General styles for the info box */
-.info-box {
-  margin: 2px;
-}
 .inner {
+  padding: 3px;
   position: relative;
   z-index: 1;
   width: 100%;
+  height: 100%;
 }
 
 /* ================================== */
