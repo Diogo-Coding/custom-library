@@ -41,7 +41,7 @@ const props = defineProps({
   },
   lineColor: {
     type: String,
-    default: 'rgb(100, 141, 170)', // default color in the middle of the gradient
+    default: 'var(--p-primary-color)', // default color in the middle of the gradient
   },
   lineWidth: {
     type: String,
@@ -123,7 +123,7 @@ function onMouseLeave() {
   position: absolute;
   transform-origin: center;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
   z-index: 0;
   animation: rotate var(--animation-duration) linear forwards infinite;
 }
