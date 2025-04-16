@@ -23,7 +23,7 @@
         <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
           <section class="flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 h-full ring-1 ring-slate-500/50">
             <div class="flex items-center gap-2 justify-between">
-              <h4 class="text-xl dark:text-slate-50 m-0">Components</h4>
+              <h4 class="text-xl font-bold dark:text-slate-50 m-0">Components</h4>
               <Tag icon="pi pi-exclamation-circle" severity="warn" value="Work In Progress"></Tag>
             </div>
             <Divider/>
@@ -46,7 +46,7 @@
         <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
           <section class="flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 h-full ring-1 ring-slate-500/50">
             <div>
-              <h4 class="text-xl m-0 dark:text-slate-50">Options</h4>
+              <h4 class="text-xl font-bold m-0 dark:text-slate-50">Options</h4>
             </div>
             <Divider/>
             <div class="flex flex-col gap-4 justify-center pt-2">
