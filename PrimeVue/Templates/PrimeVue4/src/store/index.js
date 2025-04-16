@@ -85,7 +85,7 @@ export default createStore({
   },
   modules: {},
   plugins: [createMultiTabState({
-    statesPaths: ['token', 'user', 'isLoggedIn', 'hotel', 'preferences'],
+    statesPaths: ['preferences'],
     key: 'data-and-preferences',
   })],
 })
