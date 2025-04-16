@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 
@@ -21,7 +22,8 @@ export default defineConfig({
         PrimeVueResolver()
       ]
     }),
-    legacy()
+    legacy(),
+    tailwindcss()
   ],
   server: {
     https: {

@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@primevue/themes": "^4.0.7",
+    "@tailwindcss/vite": "^4.1.4",
     "@vitejs/plugin-legacy": "^6.1.0",
     "file-saver": "^2.0.5",
     "inquirer": "^12.5.2",

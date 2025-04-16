@@ -19,7 +19,7 @@
       </header>
 
       <!-- Main -->
-      <main class="grid grid-cols-2 items-center justify-center w-full h-full gap-8 p-6">
+      <main class="!grid grid-cols-2 items-center justify-center w-full h-full gap-8 p-6">
         <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
           <section class="flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 h-full ring-1 ring-slate-500/50">
             <div class="flex items-center gap-2 justify-between">
