@@ -4,13 +4,13 @@
 -->
 <template>
   <div class="home-view relative h-screen">
-    <div class="absolute h-screen w-screen flex justify-center items-center">
+    <div class="absolute z-0 h-screen w-screen flex justify-center items-center">
       <div class="background-shadow-box"></div>
     </div>
     <section class="text-slate-700 z-[2] relative">
       <!-- Header -->
-      <header class="h-screen">
-        <div class="h-full flex flex-col gap-4 items-center justify-center">
+      <header class="flex flex-col h-screen max-h-screen">
+        <div class="grow flex flex-col gap-4 items-center justify-center pt-40">
           <div class="h-full flex flex-col gap-4 items-center justify-center">
             <div>
               <img src="@/assets/favicon.svg" alt="Logo" class="w-32 h-32">
@@ -31,14 +31,14 @@
               </p>
             </div>
           </div>
-          <div class="absolute bottom-20 flex flex-col items-center">
-            <Button text rounded class="dark:text-slate-50" @click="scrollTo('main-content')">
-              <div class="p-2">
-                <h2 class="m-0 dark:text-slate-50 text-slate-600 font-medium text-xl text-center">See more</h2>
-                <i class="pi pi-chevron-down !text-6xl text-center"></i>
-              </div>
-            </Button>
-          </div>
+        </div>
+        <div class="flex flex-col items-center pb-20">
+          <Button text rounded class="dark:text-slate-50" @click="scrollTo('main-content')">
+            <div class="p-2">
+              <h2 class="m-0 dark:text-slate-50 text-slate-600 font-medium text-xl text-center">See more</h2>
+              <i class="pi pi-chevron-down !text-6xl text-center"></i>
+            </div>
+          </Button>
         </div>
       </header>
 
@@ -154,7 +154,6 @@ function scrollTo(elementId) {
 .background-shadow-box {
   position: absolute;
   margin: auto;
-  z-index: 0;
   border-radius: 50%;
   width: 40vw;
   height: 80vh;
