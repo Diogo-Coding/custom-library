@@ -43,6 +43,10 @@ const props = defineProps({
     type: String,
     default: 'var(--p-primary-color)', // default color in the middle of the gradient
   },
+  lineOutColor: {
+    type: String,
+    default: 'rgba(255, 255, 255, 0)', // default color in the middle of the gradient
+  },
   lineWidth: {
     type: String,
     default: '80px', // default width of the animated line
@@ -113,9 +117,9 @@ function onMouseLeave() {
   display: block;
   background: linear-gradient(
     90deg,
-    rgb(255, 255, 255) 0%,
+    var(--line-out-color) 0%,
     var(--line-color) 50%,
-    rgb(255, 255, 255) 100%
+    var(--line-out-color) 100%
   );
   height: 9999px;
   width: var(--line-width);
@@ -149,6 +153,9 @@ export default {
     lineColor(newVal) {
       document.documentElement.style.setProperty('--line-color', newVal);
     },
+    lineOutColor(newVal) {
+      document.documentElement.style.setProperty('--line-out-color', newVal);
+    },
     lineWidth(newVal) {
       document.documentElement.style.setProperty('--line-width', newVal);
     },
@@ -156,6 +163,7 @@ export default {
   mounted() {
     document.documentElement.style.setProperty('--animation-duration', this.animationDuration);
     document.documentElement.style.setProperty('--line-color', this.lineColor);
+    document.documentElement.style.setProperty('--line-out-color', this.lineOutColor);
     document.documentElement.style.setProperty('--line-width', this.lineWidth);
   }
 };
