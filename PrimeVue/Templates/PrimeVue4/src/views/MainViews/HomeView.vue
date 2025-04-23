@@ -7,7 +7,7 @@
     <div class="absolute h-screen w-screen flex justify-center items-center">
       <div class="background-shadow-box"></div>
     </div>
-    <section class="text-slate-700">
+    <section class="text-slate-700 z-[2] relative">
       <!-- Header -->
       <header class="h-screen">
         <div class="h-full flex flex-col gap-4 items-center justify-center">
