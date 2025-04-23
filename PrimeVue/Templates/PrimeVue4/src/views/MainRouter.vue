@@ -25,14 +25,13 @@
 .main-page {
   height: 100vh;
   min-height: 100vh;
-  max-height: 100vh;
   width: 100vw;
   min-width: 100vw;
   max-width: 100vw;
   overflow: hidden;
 }
 .main-container {
-  overflow-y: hidden;
+  overflow: hidden;
   height: 100vh;
 }
 </style>

@@ -31,7 +31,9 @@
               <Button severity="secondary" label="Volver" icon="pi pi-arrow-left" @click="goBack()"></Button>
             </div>
             <div class="button-wrapper">
-              <Button severity="secondary" label="Ir a la pagina de inicio" icon="pi pi-home" @click="goHome()"></Button>
+              <a href="/">
+                <Button severity="secondary" label="Ir a la pagina de inicio" icon="pi pi-home"></Button>
+              </a>
             </div>
           </div>
         </div>
@@ -47,10 +49,6 @@ const router = useRouter()
 function goBack () {
   // go redirige hacia delante o atras la cantidad de rutas que se pase en el parametro, pero a su vez recarga la pagina, lo que hace que se solicite los archivos de nuevo
   router.go(-1)
-}
-
-function goHome () {
-  window.location.href = '/'
 }
 </script>
 
