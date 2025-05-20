@@ -33,7 +33,7 @@
     "vue-router": "^4.2.5",
     "vuex": "^4.0.0",
     "vuex-multi-tab-state": "^1.0.17",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
     "@primevue/auto-import-resolver": "^4.0.7",
