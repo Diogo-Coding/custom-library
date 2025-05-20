@@ -23,9 +23,31 @@ function setSystemModeFunction() {
     setLightModeFunction(true);
   }
 }
+function getAvailableThemesFunction() {
+  const Themes = 
+  [
+    { name: 'Light', value: 'light', icon: 'pi pi-sun', function: setLightModeFunction },
+    { name: 'Dark', value: 'dark', icon: 'pi pi-moon', function: setDarkModeFunction },
+    { name: 'System', value: 'system', icon: 'pi pi-desktop', function: setSystemModeFunction },
+  ]
+  return Themes;
+}
+
 function setFontSizeFunction(size) {
   document.documentElement.style.setProperty('--font-size', size + 'px')
   store.dispatch('setPreference', { fontSize: size });
+}
+
+function setCustomScrollbarFunction(value) {
+  if (value) {
+    document.documentElement.classList.add('custom-scrollbar');
+  } else {
+    document.documentElement.classList.remove('custom-scrollbar');
+  }
+  store.dispatch('setPreference', { customScrollbar: value });
+}
+function toggleCustomScrollbarFunction() {
+  setCustomScrollbarFunction(!store.getters.getPreferences.customScrollbar)
 }
 
 export const toggleDarkMode = () => toggleDarkModeFunction();
@@ -33,3 +55,6 @@ export const setFontSize = (size) => setFontSizeFunction(size);
 export const setDarkMode = () => setDarkModeFunction();
 export const setLightMode = () => setLightModeFunction();
 export const setSystemMode = () => setSystemModeFunction();
+export const availableThemes = () => getAvailableThemesFunction();
+export const toggleCustomScrollbar = () => toggleCustomScrollbarFunction();
+export const setCustomScrollbar = (value) => setCustomScrollbarFunction(value);

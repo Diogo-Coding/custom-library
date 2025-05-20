@@ -6,6 +6,31 @@
   background-color: var(--highlight-bg);
   color: var(--highlight-text-color);
 } */
+ 
+.custom-scrollbar {
+  ::-webkit-scrollbar {
+    width: 14px; /* Mostly for vertical scrollbars */
+    height: 14px; /* Mostly for horizontal scrollbars */
+  }
+  ::-webkit-scrollbar-thumb { /* Foreground */
+    background: var(--scrollbar-foreground);
+    background: rgb(177, 177, 177);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-track { /* Background */
+    background: var(--scrollbar-background);
+    background: transparent;
+  }
+}
+
+.page-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 100vh;
+  height: 100vh;
+}
 .p-toast-message-error *::selection {
   background-color: #ff00006e;
   color: black;

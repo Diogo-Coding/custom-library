@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss-primeui";
 
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);

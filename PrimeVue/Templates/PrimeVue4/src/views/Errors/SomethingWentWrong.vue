@@ -10,17 +10,17 @@
           </div>
           <div class="text-title">
             <h1 color="spring">
-              Ups, parece que hubo un problema...
+              Ops, seems there was a problem.
             </h1>
           </div>
           <div class="text-message">
             <label>
-              La pagina que intentastes acceder no se encuentra disponible o no existe. Lo mas probable debido a una actualizacion de la aplicacion
+              The page you tried to access is not available or does not exist. Most likely due to an application update
             </label>
           </div>
           <div class="text-message">
-            <label class="is-note">
-              Recarga la pagina e intente nuevamente
+            <label class="dark:text-slate-400 text-slate-600">
+              Reload page and try again
             </label>
           </div>
           <div class="divider">
@@ -28,11 +28,11 @@
           </div>
           <div class="buttons-go-back">
             <div class="button-wrapper">
-              <Button severity="secondary" label="Volver" icon="pi pi-arrow-left" @click="goBack()"></Button>
+              <Button severity="secondary" label="Go back" icon="pi pi-arrow-left" @click="goBack()"></Button>
             </div>
             <div class="button-wrapper">
               <a href="/">
-                <Button severity="secondary" label="Ir a la pagina de inicio" icon="pi pi-home"></Button>
+                <Button severity="secondary" label="Go Home Page" icon="pi pi-home"></Button>
               </a>
             </div>
           </div>

@@ -15,7 +15,8 @@ export default createStore({
       tableSize: 'normal', // [small, normal, large]
       columnsToShow: ['email', 'hotel', 'no_reserva', 'dia_llegada_vuelo', 'dia_salida_vuelo', 'no_vuelo_llegada', 'estado'],
       fontSize: 14,
-      themeMode: 'light'
+      themeMode: 'light',
+      customScrollbar: false,
     },
   },
   getters: {

@@ -2,18 +2,21 @@
 import { createApp } from "vue";
 import PrimeVue from "primevue/config";
 import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import router from "./router/index.js";
+import store from "./store/index.js";
 
 // === PrimeVue Config =========================
 import Aura from "@primevue/themes/aura";
 import "primeicons/primeicons.css";
 import primeLangES from "@/langs/es.json";
 
+// === Custom Preset Theme =====================
+import { setPreset } from "./preset.js";
+const MyPreset = setPreset(Aura);
+
 // === PrimeVue Plugins ========================
 import ConfirmationService from "primevue/confirmationservice";
 import ToastService from "primevue/toastservice";
-import { definePreset } from "@primevue/themes";
 
 // === CSS Config ==============================
 import "@/styles/basics.css";
@@ -21,71 +24,14 @@ import "@/styles/colors.css";
 import "@/styles/transitions.css";
 import "@/styles/general.css";
 import "@/styles/tailwind.css";
+import "@/styles/primevue-overrides.css";
 import "normalize.css/normalize.css";
 
-//! Highly recommended to import specific icons you need instead of whole library (You might not need all icons and import all is >1MB)
-// TODO: Change from import all to import only what you need
-// === Font Awesome Icons ====================== // Enable for Font Awesome Icons, if not use PrimeVue Icons or imported SVG icons
+// === Font Awesome Icons ======================
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-// import { library } from "@fortawesome/fontawesome-svg-core";
-// import { fas } from "@fortawesome/free-solid-svg-icons";
-// library.add(fas);
-
-// === Custom Preset Theme =====================
-const MyPreset = definePreset(Aura, {
-  semantic: {
-    primary: { // Change color primary to your preference
-      50: "{emerald.50}",
-      100: "{emerald.100}",
-      200: "{emerald.200}",
-      300: "{emerald.300}",
-      400: "{emerald.400}",
-      500: "{emerald.500}",
-      600: "{emerald.600}",
-      700: "{emerald.700}",
-      800: "{emerald.800}",
-      900: "{emerald.900}",
-      950: "{emerald.950}",
-    },
-    colorScheme: {
-      light: {
-        surface: {
-          0: "white",
-          50: "{zinc.50}",
-          100: "{zinc.100}",
-          200: "{zinc.200}",
-          300: "{zinc.300}",
-          400: "{zinc.400}",
-          500: "{zinc.500}",
-          600: "{zinc.600}",
-          700: "{zinc.700}",
-          800: "{zinc.800}",
-          900: "{zinc.900}",
-          950: "{zinc.950}",
-        },
-      },
-      dark: {
-        surface: {
-          0: "#ffffff",
-          50: "{slate.50}",
-          100: "{slate.100}",
-          200: "{slate.200}",
-          300: "{slate.300}",
-          400: "{slate.400}",
-          500: "{slate.500}",
-          600: "{slate.600}",
-          700: "{slate.700}",
-          800: "{slate.800}",
-          900: "{slate.900}",
-          950: "{slate.950}",
-        },
-      },
-    },
-  },
-});
 
 // === Init functions ===============================
-import { setLightMode, setDarkMode, setSystemMode } from '@/utilities/preferencesUtils';
+import { setLightMode, setDarkMode, setSystemMode, setCustomScrollbar } from '@/utilities/preferencesUtils';
 
 function setThemeMode() {
   const themeMode = store.getters.getPreferences ? store.getters.getPreferences.themeMode : 'light';
@@ -100,9 +46,15 @@ function setFontSize() {
   document.documentElement.style.setProperty('--font-size', fontSize + 'px')
 }
 
+function setScrollbarStyle() {
+  const customScrollbar = store.getters.getPreferences ? store.getters.getPreferences.customScrollbar : false;
+  setCustomScrollbar(customScrollbar)
+}
+
 // === Init App ================================
 setThemeMode();
 setFontSize();
+setScrollbarStyle();
 createApp(App);
 const app = createApp(App);
 
@@ -113,8 +65,12 @@ app.use(PrimeVue, {
   theme: {
     preset: MyPreset,
     options: {
-      prefix: "p",
-      darkModeSelector: ".dark",
+      prefix: "p", // CSS Class prefix
+      darkModeSelector: ".dark", // CSS Class selector for dark mode
+      cssLayer: {
+        name: 'primevue',
+        order: 'theme, base, primevue'
+      }
     },
   },
 });

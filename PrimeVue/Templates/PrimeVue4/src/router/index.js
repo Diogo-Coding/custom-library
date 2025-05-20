@@ -24,6 +24,14 @@ const routes = [ // Routes
     },
     children: [
       {
+        path: 'configuration',
+        name: 'Configuration Page',
+        component: () => import('../views/_Configuration/Configuration.vue'),
+        meta: {
+          title: 'Configuration Page'
+        }
+      },
+      {
         path: 'home',
         name: 'Home',
         component: HomeView,
@@ -65,7 +73,18 @@ const routes = [ // Routes
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (savedPosition) {
+          return savedPosition
+        } else {
+          return { top: 0 }
+        }
+      }, 500)
+    })
+  },
 })
 
 // *----------------------------------------------------------------------------------------------------------------*

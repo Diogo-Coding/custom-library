@@ -4,18 +4,18 @@
       <div class="h-full w-full text-center flex flex-col justify-center items-center gap-10">
         <div class="flex flex-col gap-2">
           <div>
-            <label class="is-title text-3xl font-bold">
+            <label class="text-3xl font-bold">
               Not found 404
             </label>
           </div>
           <div>
-            <label class="is-label">
-              Pagina no encontrada o no disponible
+            <label class="dark:text-slate-400 text-slate-600">
+              Page not found or the page has been moved.
             </label>
           </div>
         </div>
         <div>
-          <Button severity="secondary" label="Volver" icon="pi pi-arrow-left" @click="goBack()"></Button>
+          <Button severity="secondary" label="Go back" icon="pi pi-arrow-left" @click="goBack()"></Button>
         </div>
       </div>
     </div>

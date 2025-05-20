@@ -85,16 +85,13 @@ html {
     stroke-dashoffset: -124px; /* Ajustamos para una finalización más suave */
   }
 }
-.p-message-text {
-  width: 100%;
-  margin-top: 6px;
-}
-.p-message-wrapper {
-  display: flex;
-  align-items: flex-start;
-}
 .p-message-icon {
   margin-top: 6px;
+  margin-bottom: 8px;
 }
-
+.mobile-frame {
+  width: 100%;
+  min-width: 375px;
+  height: 100%;
+}
 
