@@ -77,7 +77,7 @@
                     <RouterLink :to="'/errors/something-went-wrong'" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">
                       <Button label="Something Went Wrong" severity="secondary"></Button>
                     </RouterLink>
-                    <RouterLink :to="'/main/configuration'" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">
+                    <RouterLink :to="'/dev/configuration'" class="text-slate-700 dark:text-slate-300 no-underline hover:underline">
                       <Button label="Configuration" severity="secondary"></Button>
                     </RouterLink>
                     <div>

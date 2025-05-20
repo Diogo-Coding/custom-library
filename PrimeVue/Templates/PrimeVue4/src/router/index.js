@@ -8,11 +8,51 @@ import HomeView from '../views/MainViews/HomeView.vue'
 import MainRouter from '@/views/MainRouter.vue'
 import ComponentView from '../views/MainViews/OtherView.vue'
 
+
+/**
+ * Routes
+ * 
+ * The routes are divided into two groups:
+ * 1. Development pages
+ * 2. Production pages
+ * 3. Control pages
+ * 
+ * The development pages are used for testing and debugging purposes.
+ * The main pages are used for the actual application.
+ * The control pages are used for managing the application.
+ *
+ * Grouping pages by their purpose helps to keep the code organized and maintainable.
+ * It also allows for better organization and navigation within the application.
+ * Each group can have a different set of themes, prefences, meta tags and other settings that can influence the user experience.
+ * 
+ */
 const routes = [ // Routes
   {
     path: '/',
     redirect: '/main'
   },
+  // ========================= Development pages ========================= \\
+  // ========================= ================= ========================= \\
+  {
+    path: '/dev',
+    name: 'Dev Page',
+    meta: {
+      requiresAuth: true,
+      title: 'Dev Page'
+    },
+    children: [
+      {
+        path: 'configuration',
+        name: 'Configuration Page',
+        component: () => import('../views/_Configuration/Configuration.vue'),
+        meta: {
+          title: 'Configuration Page'
+        }
+      }
+    ]
+  },
+  // ========================= Main pages ========================= \\
+  // ========================= ========== ========================= \\
   {
     path: '/main',
     name: 'Main Page',
@@ -23,14 +63,6 @@ const routes = [ // Routes
       title: 'Redirect Home'
     },
     children: [
-      {
-        path: 'configuration',
-        name: 'Configuration Page',
-        component: () => import('../views/_Configuration/Configuration.vue'),
-        meta: {
-          title: 'Configuration Page'
-        }
-      },
       {
         path: 'home',
         name: 'Home',
@@ -49,6 +81,8 @@ const routes = [ // Routes
       }
     ]
   },
+  // ========================= Control pages ========================= \\
+  // ========================= ============= ========================= \\
   {
     path: '/errors/something-went-wrong',
     name: 'somethingWentWrong',
@@ -107,25 +141,8 @@ router.onError((err) => {
     err, lastNavigation
   );
 
-  // Check if dev mode
-  // console.log(import.meta.env)
-  if (!import.meta.env.DEV) { // En modo desarrollo queremos ver los errores
-    const errMessage = err.message.toString().toLowerCase();
-    console.log(err.message, err.name, takenErrors, errMessage);
-  
-    if (takenErrors.some(e => errMessage.includes(e.toLowerCase()))) {
-      if (lastNavigation) {
-        console.log('Redirecting to last navigation');
-        window.location.href = lastNavigation.to.fullPath;
-      } else {
-        console.log('Redirecting to something went wrong');
-        window.location.href = '/errors/something-went-wrong';
-      }
-    } else {
-      console.log('Everything failed, redirecting to something went wrong');
-      window.location.href = '/errors/something-went-wrong';
-    }
-  }
+  const errMessage = err.message.toString().toLowerCase();
+  window.location.href = '/errors/something-went-wrong';
 });
 
 router.beforeEach((to, from) => {
