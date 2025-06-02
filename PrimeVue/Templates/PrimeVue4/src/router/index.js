@@ -109,17 +109,25 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (savedPosition) {
-          return savedPosition
-        } else {
-          return { top: 0 }
-        }
-      }, 500)
-    })
-  },
+    // si el navegador ya traía savedPosition (back/forward), lo usamos directamente
+    if (savedPosition) {
+      return savedPosition
+    }
+
+    // en caso contrario, intentamos devolver la posición que guardamos manualmente
+    // en el objeto scrollPositions (ver más abajo).
+    const pos = scrollPositions[to.fullPath]
+    if (pos) {
+      return { left: pos.x, top: pos.y }
+    }
+
+    // si no hay nada guardado, volvemos al inicio
+    return { left: 0, top: 0 }
+  }
 })
+
+// objeto global donde guardaremos las posiciones de scroll
+const scrollPositions = {}
 
 // *----------------------------------------------------------------------------------------------------------------*
 // *-------------------------------------------- Comprobaciones pre-navegación -------------------------------------*
@@ -148,6 +156,13 @@ router.onError((err) => {
 router.beforeEach((to, from) => {
   if (to.meta.title) document.title = 'Template App - ' +  to.meta.title
   else document.title = 'Template App'
+
+  // capturamos scroll de ‘from’
+  scrollPositions[from.fullPath] = {
+    x: window.pageXOffset,
+    y: window.pageYOffset
+  }
+  
   const additional_info = {
     from: from,
     to: to,

@@ -3,7 +3,7 @@
   also you can copy this view and use it later if needed.
 -->
 <template>
-  <div class="home-view relative">
+  <div class="home-view relative keep-alive-scrollbar" ref="scrollable">
     <div class="absolute z-0 h-screen w-screen flex justify-center items-center">
       <div class="background-shadow-box"></div>
     </div>
@@ -133,6 +133,16 @@
                     </div>
                     <Button label="Toggle Custom Scrollbar" severity="primary" text class="w-full" @click="toggleCustomScrollbar()" />
                   </div> 
+                  <div class="flex flex-col gap-2 pb-4">
+                    <h4 class="m-0 font-semibold dark:text-slate-300">Keep Scrollbar Position</h4>
+                    <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
+                      <Button label="Save" :severity="localKeepScrollbarPositions ? 'primary' : 'secondary'"
+                        :text="!localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(true)" />
+                      <Button label="No Save" :severity="!localKeepScrollbarPositions ? 'primary' : 'secondary'"
+                        :text="localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(false)" />
+                    </div>
+                    <Button label="Toggle Save Scrollbar Positions" severity="primary" text class="w-full" @click="toggleKeepScrollbarPositions()" />
+                  </div> 
                 </div>
               </section>
             </InfoBox>
@@ -161,15 +171,20 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import { toggleDarkMode, availableThemes, setFontSize, setCustomScrollbar, toggleCustomScrollbar } from '@/utilities/preferencesUtils';
+import { toggleDarkMode, availableThemes, setFontSize, setCustomScrollbar, toggleCustomScrollbar, setKeepScrollbarPositions, toggleKeepScrollbarPositions } from '@/utilities/preferencesUtils';
 import InfoBox from '@/components/InfoBox.vue';
-import MobilePreview from '@/components/HelloSpring/MobilePreview.vue';
+import MobilePreview from '@/components/Custom/MobilePreview.vue';
 import DateFormat from '@/components/DateFormat.vue';
+
+import { useKeepAliveScroll } from '@/composables/useKeepAliveScroll.js'
+const scrollable = ref(null)
+useKeepAliveScroll(scrollable)
 
 const store = useStore();
 const localTheme = computed(() => store.getters.getPreferences.themeMode);
 const localFontSize = computed(() => store.getters.getPreferences.fontSize);
 const localCustomScrollbar = computed(() => store.getters.getPreferences.customScrollbar);
+const localKeepScrollbarPositions = computed(() => store.getters.getPreferences.keepScrollbarPositions);
 const drawerPreview = ref(false)
 
 function scrollTo(elementId) {

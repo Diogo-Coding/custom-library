@@ -60,12 +60,12 @@ const box = ref(null);
 
 function onMouseEnter() {
   if (props.animatedLine && props.animatedOnlyOnHover) {
-    box.value.classList.add('show-line');
+    if (box.value) box.value.classList.add('show-line');
   }
 }
 function onMouseLeave() {
   if (props.animatedLine && props.animatedOnlyOnHover) {
-    box.value.classList.remove('show-line');
+    if (box.value) box.value.classList.remove('show-line');
   }
 }
 </script>

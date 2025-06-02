@@ -10,7 +10,7 @@
       <router-view v-slot="{ Component, route }">
         <Transition :name="route.meta.transition || 'fade'" mode="out-in">
           <keep-alive>
-            <component :is="Component" />
+            <component :is="Component"/>
           </keep-alive>
         </Transition>
       </router-view>

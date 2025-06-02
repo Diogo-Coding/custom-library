@@ -1,5 +1,5 @@
 <template>
-  <div class="other-view-page">
+  <div class="other-view-page keep-alive-scrollbar">
     <div class="other-content">
       <BackButton label="Go Back" icon="pi pi-arrow-left" />
       <div class="flex flex-col gap-4 p-8">

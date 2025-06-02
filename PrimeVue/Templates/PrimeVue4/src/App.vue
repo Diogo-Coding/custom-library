@@ -6,7 +6,7 @@
   <Toast />
   <RouterView v-slot="{ Component, route }">
     <Transition :name="route.meta.transition || 'fade'" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component"/>
     </Transition>
   </RouterView>
 </template>

@@ -38,6 +38,7 @@ function setFontSizeFunction(size) {
   store.dispatch('setPreference', { fontSize: size });
 }
 
+// Scroll Managment
 function setCustomScrollbarFunction(value) {
   if (value) {
     document.documentElement.classList.add('custom-scrollbar');
@@ -50,6 +51,13 @@ function toggleCustomScrollbarFunction() {
   setCustomScrollbarFunction(!store.getters.getPreferences.customScrollbar)
 }
 
+function setKeepScrollbarPositionsFunction(value) {
+  store.dispatch('setPreference', { keepScrollbarPositions: value });
+}
+function toggleKeepScrollbarPositionsFunction() {
+  setKeepScrollbarPositionsFunction(!store.getters.getPreferences.keepScrollbarPositions)
+}
+
 export const toggleDarkMode = () => toggleDarkModeFunction();
 export const setFontSize = (size) => setFontSizeFunction(size);
 export const setDarkMode = () => setDarkModeFunction();
@@ -58,3 +66,5 @@ export const setSystemMode = () => setSystemModeFunction();
 export const availableThemes = () => getAvailableThemesFunction();
 export const toggleCustomScrollbar = () => toggleCustomScrollbarFunction();
 export const setCustomScrollbar = (value) => setCustomScrollbarFunction(value);
+export const toggleKeepScrollbarPositions = () => toggleKeepScrollbarPositionsFunction();
+export const setKeepScrollbarPositions = (value) => setKeepScrollbarPositionsFunction(value);

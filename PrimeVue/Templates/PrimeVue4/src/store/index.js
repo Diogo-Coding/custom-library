@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
-import createMultiTabState from 'vuex-multi-tab-state';
+import { createStore } from "vuex";
+import createMultiTabState from "vuex-multi-tab-state";
+import { generateSessionId } from "@/utilities/sessionId.js";
 
 export default createStore({
   state: {
@@ -11,82 +12,124 @@ export default createStore({
       searchSideBar: true,
       exportDefaultFilename: "",
       saveTablePreferences: true, // Guarda filtros, orden y paginación en localStorage
-      saveTablePreferencesLifetime: 'local', // [local, session]
-      tableSize: 'normal', // [small, normal, large]
-      columnsToShow: ['email', 'hotel', 'no_reserva', 'dia_llegada_vuelo', 'dia_salida_vuelo', 'no_vuelo_llegada', 'estado'],
+      saveTablePreferencesLifetime: "local", // [local, session]
+      tableSize: "normal", // [small, normal, large]
       fontSize: 14,
-      themeMode: 'light',
+      themeMode: "light",
       customScrollbar: false,
+      keepScrollbarPositions: true,
     },
+    scrollPositions: {},
+    sessionId: generateSessionId(),
   },
   getters: {
-    getUser: state => {
-      return state.user
+    getUser: (state) => {
+      return state.user;
     },
-    getIsLoggedIn: state => {
-      return state.isLoggedIn
+    getIsLoggedIn: (state) => {
+      return state.isLoggedIn;
     },
-    getHotel: state => {
-      return state.hotel
+    getHotel: (state) => {
+      return state.hotel;
     },
-    getPreferences: state => {
-      return state.preferences
+    getPreferences: (state) => {
+      return state.preferences;
     },
-    getToken: state => {
-      return state.token
+    getToken: (state) => {
+      return state.token;
+    },
+    getScrollPositions: (state) => {
+      return state.scrollPositions;
+    },
+    getScrollPosition: (state) => (key) => {
+      return state.scrollPositions[key] || null;
+    },
+    getSessionId: (state) => {
+      return state.sessionId;
     },
   },
   mutations: {
     SET_USER(state, user) {
-      state.user = user
+      state.user = user;
     },
     SET_IS_LOGGED_IN(state, status) {
-      state.isLoggedIn = status
+      state.isLoggedIn = status;
     },
     SET_HOTEL(state, hotel) {
-      state.hotel = hotel
+      state.hotel = hotel;
     },
     SET_PREFERENCE(state, preference) {
       // Recibe un objeto con las preferencias a cambiar, por ejemplo { searchSideBar: false }
       // Busca esa preferencia en el objeto preferences y lo actualiza
-      console.log(preference)
+      console.log(preference);
       for (const [key, value] of Object.entries(preference)) {
-        state.preferences[key] = value
+        state.preferences[key] = value;
       }
     },
     TOGGLE_COLUMN_TO_SHOW(state, columns) {
       // Recibe un array de columnas a cambiar
       // Las columnas son objetos con el nombre de la columna y el valor de la columna
       // Busca esas columnas en el objeto preferences y lo actualiza
-      state.preferences.columnsToShow = columns.map(column => column.value)
+      state.preferences.columnsToShow = columns.map((column) => column.value);
     },
     SET_TOKEN(state, token) {
-      state.token = token
+      state.token = token;
+    },
+    SET_SCROLL_POSITION(state, { key, x, y }) {
+      // Extraemos sessionId del state actual
+      const sid = state.sessionId;
+
+      state.scrollPositions = {
+        ...state.scrollPositions,
+        [key]: {
+          x,
+          y,
+          sessionId: sid,
+        },
+      };
+    },
+    CLEAR_OTHERS_SCROLL_POSITIONS(state, { key }) {
+      const keep = state.scrollPositions[key];
+      state.scrollPositions = {};
+      if (keep) {
+        state.scrollPositions[key] = keep;
+      }
+    },
+    CLEAR_ALL_SCROLL_POSITIONS(state) {
+      state.scrollPositions = {};
     },
   },
   actions: {
     setUser(context, user) {
-      context.commit('SET_USER', user)
+      context.commit("SET_USER", user);
     },
     setIsLoggedIn(context, status) {
-      context.commit('SET_IS_LOGGED_IN', status)
+      context.commit("SET_IS_LOGGED_IN", status);
     },
     setHotel(context, hotel) {
-      context.commit('SET_HOTEL', hotel)
+      context.commit("SET_HOTEL", hotel);
     },
     setPreference(context, preference) {
-      context.commit('SET_PREFERENCE', preference)
+      context.commit("SET_PREFERENCE", preference);
     },
     toggleColumnToShow(context, column) {
-      context.commit('TOGGLE_COLUMN_TO_SHOW', column)
+      context.commit("TOGGLE_COLUMN_TO_SHOW", column);
     },
     setToken(context, token) {
-      context.commit('SET_TOKEN', token)
+      context.commit("SET_TOKEN", token);
+    },
+    setScrollbarPosition(context, position) {
+      context.commit("SET_SCROLL_POSITION", position);
+    },
+    clearAllScrollPositions(context) {
+      context.commit("CLEAR_ALL_SCROLL_POSITIONS");
     },
   },
   modules: {},
-  plugins: [createMultiTabState({
-    statesPaths: ['preferences'],
-    key: 'data-and-preferences',
-  })],
-})
+  plugins: [
+    createMultiTabState({
+      statesPaths: ["preferences", "scrollPositions"],
+      key: "data-and-preferences",
+    }),
+  ],
+});

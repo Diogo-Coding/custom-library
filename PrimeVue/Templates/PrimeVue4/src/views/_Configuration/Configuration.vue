@@ -1,5 +1,5 @@
 <template>
-  <div class="page-scroll">
+  <div class="page-scroll keep-alive-scrollbar" ref="scrollable">
     <div class="pt-20 pl-20">
       <BackButton label="Go back" icon="pi pi-arrow-left" size="large" text/>
     </div>
@@ -246,6 +246,10 @@ import InfoBox from '@/components/InfoBox.vue';
 
 import { useToast } from "primevue/usetoast";
 import BackButton from '@/components/BackButton.vue';
+
+import { useKeepAliveScroll } from '@/composables/useKeepAliveScroll.js'
+const scrollable = ref(null)
+useKeepAliveScroll(scrollable)
 
 // Configuration preferences
 const store = useStore();
