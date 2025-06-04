@@ -3,7 +3,6 @@ import { createApp } from "vue";
 import PrimeVue from "primevue/config";
 import App from "./App.vue";
 import router from "./router/index.js";
-import store from "./store/index.js";
 
 // === PrimeVue Config =========================
 import Aura from "@primevue/themes/aura";
@@ -27,34 +26,21 @@ import "@/styles/tailwind.css";
 import "@/styles/primevue-overrides.css";
 import "normalize.css/normalize.css";
 
+// === Pinia ====================================
+import { createPinia } from 'pinia'
+import persistedState from 'pinia-plugin-persistedstate'
+const pinia = createPinia()
+pinia.use(persistedState)
+
 // === Font Awesome Icons ======================
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-// === Init functions ===============================
-import { setLightMode, setDarkMode, setSystemMode, setCustomScrollbar } from '@/utilities/preferencesUtils';
+// === Init functions (Pinia) ===============================
+import { setLightMode, setDarkMode, setSystemMode, setCustomScrollbar } from '@/utilities/preferencesUtils'
+import { usePreferencesStore } from '@/stores/preferences'
 
-function setThemeMode() {
-  const themeMode = store.getters.getPreferences ? store.getters.getPreferences.themeMode : 'light';
-  if (themeMode === 'system') setSystemMode();
-  else if (themeMode === 'light') setLightMode();
-  else if (themeMode === 'dark') setDarkMode();
-  else setLightMode();
-}
-
-function setFontSize() {
-  const fontSize = store.getters.getPreferences ? store.getters.getPreferences.fontSize : 14;
-  document.documentElement.style.setProperty('--font-size', fontSize + 'px')
-}
-
-function setScrollbarStyle() {
-  const customScrollbar = store.getters.getPreferences ? store.getters.getPreferences.customScrollbar : false;
-  setCustomScrollbar(customScrollbar)
-}
 
 // === Init App ================================
-setThemeMode();
-setFontSize();
-setScrollbarStyle();
 createApp(App);
 const app = createApp(App);
 
@@ -74,9 +60,26 @@ app.use(PrimeVue, {
     },
   },
 });
-app.use(store);
+app.use(pinia);
 app.use(router);
 app.use(ConfirmationService);
 app.use(ToastService);
+// ----- //
+const preferencesStore = usePreferencesStore()
+function applyInitialPreferences() {
+  const { 
+    themeMode = 'light',
+    fontSize = 14, 
+    customScrollbar = false 
+  } = preferencesStore
+
+  if (themeMode === 'system') setSystemMode()
+  else if (themeMode === 'dark') setDarkMode()
+  else setLightMode()
+
+  document.documentElement.style.setProperty('--font-size', `${fontSize}px`)
+  setCustomScrollbar(customScrollbar)
+}
+applyInitialPreferences()
 // ----- //
 app.mount("#app");

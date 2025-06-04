@@ -16,7 +16,13 @@ import { PrimeVueResolver } from '@primevue/auto-import-resolver';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.startsWith('pwa-install')
+        }
+      }
+    }),
     Components({
       resolvers: [
         PrimeVueResolver()

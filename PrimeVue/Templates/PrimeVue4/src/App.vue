@@ -6,26 +6,26 @@
   <Toast />
   <RouterView v-slot="{ Component, route }">
     <Transition :name="route.meta.transition || 'fade'" mode="out-in">
-      <component :is="Component"/>
+      <component :is="Component" />
     </Transition>
   </RouterView>
+  <AlertPWA />
 </template>
 
 <script setup>
-import Toast from 'primevue/toast';
-import { useStore } from 'vuex';
-import { setSystemMode } from '@/utilities/preferencesUtils';
+import Toast from 'primevue/toast'
+import { usePreferencesStore } from '@/stores/preferences'
+import { setSystemMode } from '@/utilities/preferencesUtils'
+import AlertPWA from './components/AlertPWA.vue'
 
-const store = useStore();
+const preferencesStore = usePreferencesStore()
 
-// Event listener for system theme mode if its activated by user and change in realtime
-const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-mediaQuery.addEventListener('change', e => {
-  if (store.getters.getPreferences.themeMode === 'system') {
-    setSystemMode();
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+mediaQuery.addEventListener('change', () => {
+  if (preferencesStore.themeMode === 'system') {
+    setSystemMode()
   }
-});
-
+})
 </script>
 
 <style scoped>

@@ -169,27 +169,40 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
-import { toggleDarkMode, availableThemes, setFontSize, setCustomScrollbar, toggleCustomScrollbar, setKeepScrollbarPositions, toggleKeepScrollbarPositions } from '@/utilities/preferencesUtils';
-import InfoBox from '@/components/InfoBox.vue';
-import MobilePreview from '@/components/Custom/MobilePreview.vue';
-import DateFormat from '@/components/DateFormat.vue';
-
 import { useKeepAliveScroll } from '@/composables/useKeepAliveScroll.js'
 const scrollable = ref(null)
 useKeepAliveScroll(scrollable)
 
-const store = useStore();
-const localTheme = computed(() => store.getters.getPreferences.themeMode);
-const localFontSize = computed(() => store.getters.getPreferences.fontSize);
-const localCustomScrollbar = computed(() => store.getters.getPreferences.customScrollbar);
-const localKeepScrollbarPositions = computed(() => store.getters.getPreferences.keepScrollbarPositions);
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'                /* nuevo */
+import InfoBox from '@/components/InfoBox.vue'
+import MobilePreview from '@/components/Custom/MobilePreview.vue'
+import DateFormat from '@/components/DateFormat.vue'
+import { usePreferencesStore } from '@/stores/preferences' /* nuevo */
+import {
+  toggleDarkMode,
+  availableThemes,
+  setFontSize,
+  setCustomScrollbar,
+  toggleCustomScrollbar,
+  setKeepScrollbarPositions,
+  toggleKeepScrollbarPositions,
+} from '@/utilities/preferencesUtils'
+
+
+const preferencesStore = usePreferencesStore()
+const {
+  themeMode: localTheme,
+  fontSize: localFontSize,
+  customScrollbar: localCustomScrollbar,
+  keepScrollbarPositions: localKeepScrollbarPositions,
+} = storeToRefs(preferencesStore)
+
 const drawerPreview = ref(false)
 
 function scrollTo(elementId) {
-  const element = document.getElementById(elementId);
-  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const element = document.getElementById(elementId)
+  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 </script>
 

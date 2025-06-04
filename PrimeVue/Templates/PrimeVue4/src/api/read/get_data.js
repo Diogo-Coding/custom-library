@@ -1,5 +1,6 @@
 import { URL_BACK } from "@/config/config";
-import store from "@/store";
+import { useAuthStore } from '@/stores/auth'
+const authStore = useAuthStore()
 
 // Llamada a la API para obtener el historial general
 export async function getData(data) {
@@ -9,7 +10,10 @@ export async function getData(data) {
 
   const options = {
     method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded", "Authorization": `Bearer ${store.getters.getToken}`},
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Bearer ${authStore.authToken}`,
+    },
     redirect: 'follow',
     body: params,
   }

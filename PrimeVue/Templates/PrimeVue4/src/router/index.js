@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import store from '@/store'
 
 import NotFound from '../views/Errors/NotFound.vue'
 import SomethingWentWrong from '../views/Errors/SomethingWentWrong.vue'
@@ -107,39 +106,10 @@ const routes = [ // Routes
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    // si el navegador ya traía savedPosition (back/forward), lo usamos directamente
-    if (savedPosition) {
-      return savedPosition
-    }
-
-    // en caso contrario, intentamos devolver la posición que guardamos manualmente
-    // en el objeto scrollPositions (ver más abajo).
-    const pos = scrollPositions[to.fullPath]
-    if (pos) {
-      return { left: pos.x, top: pos.y }
-    }
-
-    // si no hay nada guardado, volvemos al inicio
-    return { left: 0, top: 0 }
-  }
+  routes
 })
 
-// objeto global donde guardaremos las posiciones de scroll
-const scrollPositions = {}
-
-// *----------------------------------------------------------------------------------------------------------------*
-// *-------------------------------------------- Comprobaciones pre-navegación -------------------------------------*
-let takenErrors = [ // Errores admitidos de algo que no se pudo cargar
-  // Chrome
-  'Failed to fetch dynamically imported module',
-  'Failed to load module script',
-  // Safari
-  'Unable to preload',
-  'Did not parse stylesheet',
-]
-let lastNavigation = null // Estado de ultima navegacion en ventana actual
+let lastNavigation = null
 
 router.onError((err) => {
   console.log(
@@ -149,29 +119,22 @@ router.onError((err) => {
     err, lastNavigation
   );
 
-  const errMessage = err.message.toString().toLowerCase();
   window.location.href = '/errors/something-went-wrong';
 });
 
 router.beforeEach((to, from) => {
   if (to.meta.title) document.title = 'Template App - ' +  to.meta.title
   else document.title = 'Template App'
-
-  // capturamos scroll de ‘from’
-  scrollPositions[from.fullPath] = {
-    x: window.pageXOffset,
-    y: window.pageYOffset
-  }
   
   const additional_info = {
     from: from,
     to: to,
-    store: store
   }
-  if (from.path !== '/') lastNavigation = additional_info // Para evitar la navegacion prederminada de vue router
+  if (from.path !== '/') lastNavigation = additional_info
+
   console.log(
     '%c Route change triggered -->> %c - %c From: %s %c - %c To: %s %c - %c Additional Info: %o',
-    'background: #00695c; color: #fff; padding: 2px; border-radius: 2px;', // Estilo para "Route change triggered -->>"
+    'background: #00695c; color: #fff; padding: 2px; border-radius: 2px;',
     'background: transparent',
     'background: #444; color: #badaff; padding: 2px; border-radius: 2px;', from.path,
     'background: transparent',

@@ -1,5 +1,6 @@
 import { URL_BACK } from "@/config/config";
-import store from "@/store";
+import { useAuthStore } from '@/stores/auth'
+const authStore = useAuthStore()
 
 export async function deleteData(id) {
   let params = new URLSearchParams();
@@ -7,7 +8,10 @@ export async function deleteData(id) {
 
   const options = {
     method: "DELETE",
-    headers: {"Content-Type": "application/x-www-form-urlencoded", "Authorization": `Bearer ${store.getters.getToken}`},
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Bearer ${authStore.authToken}`,
+    },
     redirect: 'follow',
     body: params,
   }

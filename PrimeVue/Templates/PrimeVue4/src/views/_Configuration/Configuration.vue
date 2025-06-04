@@ -239,72 +239,59 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
-import { toggleDarkMode, availableThemes, setFontSize, toggleCustomScrollbar, setCustomScrollbar } from '@/utilities/preferencesUtils';
-import InfoBox from '@/components/InfoBox.vue';
-
-import { useToast } from "primevue/usetoast";
-import BackButton from '@/components/BackButton.vue';
-
 import { useKeepAliveScroll } from '@/composables/useKeepAliveScroll.js'
 const scrollable = ref(null)
 useKeepAliveScroll(scrollable)
 
-// Configuration preferences
-const store = useStore();
-const localTheme = computed(() => store.getters.getPreferences.themeMode);
-const localFontSize = computed(() => store.getters.getPreferences.fontSize);
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import InfoBox from '@/components/InfoBox.vue'
+import { useToast } from 'primevue/usetoast'
+import BackButton from '@/components/BackButton.vue'
+import { usePreferencesStore } from '@/stores/preferences'
+import {
+  toggleDarkMode,
+  availableThemes,
+  setFontSize,
+  toggleCustomScrollbar,
+  setCustomScrollbar,
+} from '@/utilities/preferencesUtils'
 
-const localCustomScrollbar = computed(() => store.getters.getPreferences.customScrollbar);
 
-// =========================================================== //
-// =========================================================== //
+const preferencesStore = usePreferencesStore()
+const {
+  themeMode: localTheme,
+  fontSize: localFontSize,
+  customScrollbar: localCustomScrollbar,
+} = storeToRefs(preferencesStore)
+
 // Checkboxes
 const categories = ref([
-  { name: "Accounting", key: "A", invalid: false },
-  { name: "Marketing", key: "M", invalid: false },
-  { name: "Production", key: "P", invalid: true },
-  { name: "Research", key: "R", invalid: true }
-]);
-const selectedCategories = ref(['Marketing', 'Production']);
+  { name: 'Accounting', key: 'A', invalid: false },
+  { name: 'Marketing', key: 'M', invalid: false },
+  { name: 'Production', key: 'P', invalid: true },
+  { name: 'Research', key: 'R', invalid: true },
+])
+const selectedCategories = ref(['Marketing', 'Production'])
 
-// ToggleSwitch
-// ToggleButton
-const checked = ref(true);
-const notChecked = ref(false);
+// ToggleSwitch / ToggleButton
+const checked = ref(true)
+const notChecked = ref(false)
 
 // Toast
-const toast = useToast();
-const showSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', life: 3000 });
-};
+const toast = useToast()
+const showSuccess   = () => toast.add({ severity: 'success',   summary: 'Success Message',   detail: 'Message Content', life: 3000 })
+const showInfo      = () => toast.add({ severity: 'info',      summary: 'Info Message',      detail: 'Message Content', life: 3000 })
+const showWarn      = () => toast.add({ severity: 'warn',      summary: 'Warn Message',      detail: 'Message Content', life: 3000 })
+const showError     = () => toast.add({ severity: 'error',     summary: 'Error Message',     detail: 'Message Content', life: 3000 })
+const showSecondary = () => toast.add({ severity: 'secondary', summary: 'Secondary Message', detail: 'Message Content', life: 3000 })
+const showContrast  = () => toast.add({ severity: 'contrast',  summary: 'Contrast Message',  detail: 'Message Content', life: 3000 })
 
-const showInfo = () => {
-  toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', life: 3000 });
-};
-
-const showWarn = () => {
-  toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', life: 3000 });
-};
-
-const showError = () => {
-  toast.add({ severity: 'error', summary: 'Error Message', detail: 'Message Content', life: 3000 });
-};
-
-const showSecondary = () => {
-  toast.add({ severity: 'secondary', summary: 'Secondary Message', detail: 'Message Content', life: 3000 });
-};
-
-const showContrast = () => {
-  toast.add({ severity: 'contrast', summary: 'Contrast Message', detail: 'Message Content', life: 3000 });
-};
-
-// MeterGroup
+// MeterGroup demo data
 const meters = ref([
-  { label: 'Apps', color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'pi pi-table' },
-  { label: 'Messages', color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'pi pi-inbox' },
-  { label: 'Media', color1: '#60a5fa', color2: '#c084fc', value: 20, icon: 'pi pi-image' },
-  { label: 'System', color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'pi pi-cog' }
-]);
+  { label: 'Apps',      color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'pi pi-table' },
+  { label: 'Messages',  color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'pi pi-inbox' },
+  { label: 'Media',     color1: '#60a5fa', color2: '#c084fc', value: 20, icon: 'pi pi-image' },
+  { label: 'System',    color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'pi pi-cog'   },
+])
 </script>

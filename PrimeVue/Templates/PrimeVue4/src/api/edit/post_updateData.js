@@ -1,5 +1,6 @@
 import { URL_BACK } from "@/config/config";
-import store from "@/store";
+import { useAuthStore } from '@/stores/auth'
+const authStore = useAuthStore()
 
 export async function updateFetch(id, newData) {
   let params = new URLSearchParams();
@@ -8,7 +9,10 @@ export async function updateFetch(id, newData) {
 
   const options = {
     method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded", "Authorization": `Bearer ${store.getters.getToken}`},
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Bearer ${authStore.authToken}`,
+    },
     redirect: 'follow',
     body: params,
   }
