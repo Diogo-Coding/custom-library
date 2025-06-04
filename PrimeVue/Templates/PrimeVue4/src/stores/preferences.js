@@ -23,6 +23,5 @@ export const usePreferencesStore = defineStore('preferences', {
   },
   persist: {
     key: 'user-preferences',
-    paths: ['preferences'],
   },
 })

@@ -53,6 +53,6 @@ export const useAppStore = defineStore('app', {
   },
   persist: {
     key: 'app-store',
-    paths: ['browserSessionId', 'latestVersion'],
+    pick: ['browserSessionId', 'latestVersion'],
   },
 })
