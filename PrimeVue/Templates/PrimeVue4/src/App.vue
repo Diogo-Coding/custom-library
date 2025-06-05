@@ -3,13 +3,15 @@
   because it will broke the template rendering when using the "mode" prop in "Transition" elements.
 -->
 <template>
-  <Toast />
-  <RouterView v-slot="{ Component, route }">
-    <Transition :name="route.meta.transition || 'fade'" mode="out-in">
-      <component :is="Component" />
-    </Transition>
-  </RouterView>
-  <AlertPWA />
+  <div class="bg-white dark:bg-surface-950">
+    <Toast />
+    <RouterView v-slot="{ Component, route }">
+      <Transition :name="route.meta.transition || 'fade'" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
+    <AlertPWA />
+  </div>
 </template>
 
 <script setup>

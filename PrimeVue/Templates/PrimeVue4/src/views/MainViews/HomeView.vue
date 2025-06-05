@@ -59,7 +59,7 @@
           </div>
           <div class="!grid grid-cols-1 md:grid-cols-2 items-center justify-center pt-10 md:p-10 w-fit gap-8">
             <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
-              <section class="flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 h-full ring-1 ring-slate-500/50">
+              <section class="flex flex-col bg-slate-100 dark:bg-surface-900 rounded-2xl p-6 h-full shadow ring-1 ring-slate-500/50">
                 <div class="flex items-center gap-2 justify-between">
                   <h4 class="text-xl font-bold dark:text-slate-50 m-0">Components</h4>
                   <Tag icon="pi pi-exclamation-circle" severity="warn" value="Work In Progress"></Tag>
@@ -96,7 +96,7 @@
             </InfoBox>
           
             <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
-              <section class="flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 h-full ring-1 ring-slate-500/50">
+              <section class="flex flex-col bg-slate-100 dark:bg-surface-900 rounded-2xl p-6 h-full shadow ring-1 ring-slate-500/50">
                 <div>
                   <h4 class="text-xl font-bold m-0 dark:text-slate-50">Options</h4>
                 </div>
@@ -105,44 +105,78 @@
                   <!-- Theme Selector -->
                   <div class="flex flex-col gap-2 pb-4">
                     <h4 class="m-0 font-semibold dark:text-slate-300">Theme</h4>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                      <Button v-for="theme in availableThemes()" :key="theme" :label="theme.name"
-                        :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon"
-                        :text="theme.value != localTheme" class="w-full px-4" @click="theme.function()" />
+                    <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                      <div class="flex items-center gap-1 w-full">
+                        <Button v-for="theme in availableThemes()" :key="theme" :label="theme.name"
+                          :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon"
+                          :text="theme.value != localTheme" class="w-full px-4" @click="theme.function()" />
+                      </div>
+                      <div class="px-1 w-full">
+                        <Divider class="m-0 py-1"/>
+                      </div>
+                      <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleDarkMode()">
+                        Toggle Theme
+                      </ChipButton>
                     </div>
-                    <Button label="Toggle Theme" severity="primary" text @click="toggleDarkMode()" />
                   </div>
                   <!-- Font Size Selector -->
                   <div class="flex flex-col gap-2 pb-4">
                     <h4 class="m-0 font-semibold dark:text-slate-300">Font Size</h4>
-                    <div class="grid grid-cols-1 lg:grid-cols-4 items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                      <Button label="Small" :severity="localFontSize == 12 ? 'primary' : 'secondary'" :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
-                      <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'" :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
-                      <Button label="Big" :severity="localFontSize == 16 ? 'primary' : 'secondary'" :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
-                      <Button label="Giant" :severity="localFontSize == 18 ? 'primary' : 'secondary'" :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+                    <div class="flex flex-col gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                      <div class="grid grid-cols-4 gap-1 w-full">
+                        <Button label="Small" :severity="localFontSize == 12 ? 'primary' : 'secondary'"
+                          :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
+                        <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'"
+                          :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
+                        <Button label="Big" :severity="localFontSize == 16 ? 'primary' : 'secondary'"
+                          :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
+                        <Button label="Giant" :severity="localFontSize == 18 ? 'primary' : 'secondary'"
+                          :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+                      </div>
+                      <div class="px-1 w-full">
+                        <Divider class="m-0 py-1"/>
+                      </div>
+                      <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="setFontSize(14)">
+                        Reset Font Size
+                      </ChipButton>
                     </div>
                   </div>
                   <!-- Custom Scrollbar Selector -->
                   <div class="flex flex-col gap-2 pb-4">
                     <h4 class="m-0 font-semibold dark:text-slate-300">Custom Scrollbar</h4>
-                    <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                      <Button label="Custom" :severity="localCustomScrollbar ? 'primary' : 'secondary'"
-                        :text="!localCustomScrollbar" class="w-full" @click="setCustomScrollbar(true)" />
-                      <Button label="Native" :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
-                        :text="localCustomScrollbar" class="w-full" @click="setCustomScrollbar(false)" />
+                    <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                      <div class="flex items-center gap-1 w-full">
+                        <Button label="Custom" :severity="localCustomScrollbar ? 'primary' : 'secondary'"
+                          :text="!localCustomScrollbar" class="w-full" @click="setCustomScrollbar(true)" />
+                        <Button label="Native" :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
+                          :text="localCustomScrollbar" class="w-full" @click="setCustomScrollbar(false)" />
+                      </div>
+                      <div class="px-1 w-full">
+                        <Divider class="m-0 py-1"/>
+                      </div>
+                      <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleCustomScrollbar()">
+                        Toggle Custom Scrollbar
+                      </ChipButton>
                     </div>
-                    <Button label="Toggle Custom Scrollbar" severity="primary" text class="w-full" @click="toggleCustomScrollbar()" />
-                  </div> 
+                  </div>
+                  <!-- Keep Scrollbar Position Selector -->
                   <div class="flex flex-col gap-2 pb-4">
                     <h4 class="m-0 font-semibold dark:text-slate-300">Keep Scrollbar Position</h4>
-                    <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                      <Button label="Save" :severity="localKeepScrollbarPositions ? 'primary' : 'secondary'"
-                        :text="!localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(true)" />
-                      <Button label="No Save" :severity="!localKeepScrollbarPositions ? 'primary' : 'secondary'"
-                        :text="localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(false)" />
+                    <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                      <div class="flex items-center gap-1 w-full">
+                        <Button label="Save" :severity="localKeepScrollbarPositions ? 'primary' : 'secondary'"
+                          :text="!localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(true)" />
+                        <Button label="No Save" :severity="!localKeepScrollbarPositions ? 'primary' : 'secondary'"
+                          :text="localKeepScrollbarPositions" class="w-full" @click="setKeepScrollbarPositions(false)" />
+                      </div>
+                      <div class="px-1 w-full">
+                        <Divider class="m-0 py-1"/>
+                      </div>
+                      <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleKeepScrollbarPositions()">
+                        Toggle Save Scrollbar Positions
+                      </ChipButton>
                     </div>
-                    <Button label="Toggle Save Scrollbar Positions" severity="primary" text class="w-full" @click="toggleKeepScrollbarPositions()" />
-                  </div> 
+                  </div>
                 </div>
               </section>
             </InfoBox>
@@ -169,6 +203,7 @@
 </template>
 
 <script setup>
+import ChipButton from '@/components/ChipButtons/ChipButton.vue'
 import { useKeepAliveScroll } from '@/composables/useKeepAliveScroll.js'
 const scrollable = ref(null)
 useKeepAliveScroll(scrollable)

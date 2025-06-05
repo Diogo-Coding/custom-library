@@ -8,6 +8,7 @@ import router from "./router/index.js";
 import Aura from "@primevue/themes/aura";
 import "primeicons/primeicons.css";
 import primeLangES from "@/langs/es.json";
+import Ripple from 'primevue/ripple';
 
 // === Custom Preset Theme =====================
 import { setPreset } from "./preset.js";
@@ -39,7 +40,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { setLightMode, setDarkMode, setSystemMode, setCustomScrollbar } from '@/utilities/preferencesUtils'
 import { usePreferencesStore } from '@/stores/preferences'
 
-
 // === Init App ================================
 createApp(App);
 const app = createApp(App);
@@ -64,6 +64,7 @@ app.use(pinia);
 app.use(router);
 app.use(ConfirmationService);
 app.use(ToastService);
+app.directive('ripple', Ripple);
 // ----- //
 const preferencesStore = usePreferencesStore()
 function applyInitialPreferences() {

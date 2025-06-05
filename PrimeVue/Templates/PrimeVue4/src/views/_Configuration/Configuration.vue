@@ -4,10 +4,10 @@
       <BackButton label="Go back" icon="pi pi-arrow-left" size="large" text/>
     </div>
     <div class="flex flex-col items-center justify-center px-[20%] pb-20 pt-8">
-      <h1 class="!text-3xl m-0 bold-900 text-slate-800 dark:text-slate-50">Configuration Page</h1>
+      <h1 class="!text-3xl m-0 bold-900 text-slate-800 dark:text-slate-200">Configuration Page</h1>
       <div class="pb-12">
         <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
-          <section class="flex flex-col bg-slate-100 dark:bg-gray-900 rounded-2xl p-6 h-full">
+          <section class="flex flex-col bg-slate-50 dark:bg-surface-900 rounded-2xl p-6 h-full shadow ring-1 ring-slate-500/50">
             <div>
               <h4 class="text-xl font-bold m-0 dark:text-slate-50">Options</h4>
             </div>
@@ -16,25 +16,40 @@
               <!-- Theme Selector -->
               <div class="flex flex-col gap-2 pb-4">
                 <h4 class="m-0 font-semibold dark:text-slate-300">Theme</h4>
-                <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                  <Button v-for="theme in availableThemes()" :key="theme" :label="theme.name"
-                    :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon"
-                    :text="theme.value != localTheme" class="w-full px-4" @click="theme.function()" />
+                <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                  <div class="flex items-center gap-1 w-full">
+                    <Button v-for="theme in availableThemes()" :key="theme" :label="theme.name"
+                      :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon"
+                      :text="theme.value != localTheme" class="w-full px-4" @click="theme.function()" />
+                  </div>
+                  <div class="px-1 w-full">
+                    <Divider class="m-0 py-1"/>
+                  </div>
+                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleDarkMode()">
+                    Toggle Theme
+                  </ChipButton>
                 </div>
-                <Button label="Toggle Theme" severity="primary" text @click="toggleDarkMode()" />
               </div>
               <!-- Font Size Selector -->
               <div class="flex flex-col gap-2 pb-4">
                 <h4 class="m-0 font-semibold dark:text-slate-300">Font Size</h4>
-                <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                  <Button label="Small" :severity="localFontSize == 12 ? 'primary' : 'secondary'"
-                    :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
-                  <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'"
-                    :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
-                  <Button label="Big" :severity="localFontSize == 16 ? 'primary' : 'secondary'"
-                    :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
-                  <Button label="Giant" :severity="localFontSize == 18 ? 'primary' : 'secondary'"
-                    :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+                <div class="flex flex-col gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                  <div class="grid grid-cols-4 gap-1 w-full">
+                    <Button label="Small" :severity="localFontSize == 12 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
+                    <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
+                    <Button label="Big" :severity="localFontSize == 16 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
+                    <Button label="Giant" :severity="localFontSize == 18 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+                  </div>
+                  <div class="px-1 w-full">
+                    <Divider class="m-0 py-1"/>
+                  </div>
+                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="setFontSize(14)">
+                    Reset Font Size
+                  </ChipButton>
                 </div>
               </div>
             </div>
@@ -42,13 +57,20 @@
               <!-- Custom Scrollbar Selector -->
               <div class="flex flex-col gap-2 pb-4">
                 <h4 class="m-0 font-semibold dark:text-slate-300">Custom Scrollbar</h4>
-                <div class="flex items-center gap-1 p-2 bg-white dark:bg-slate-600 shadow rounded-lg">
-                  <Button label="Custom" :severity="localCustomScrollbar ? 'primary' : 'secondary'"
-                    :text="!localCustomScrollbar" class="w-full" @click="setCustomScrollbar(true)" />
-                  <Button label="Native" :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
-                    :text="localCustomScrollbar" class="w-full" @click="setCustomScrollbar(false)" />
+                <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
+                  <div class="flex items-center gap-1 w-full">
+                    <Button label="Custom" :severity="localCustomScrollbar ? 'primary' : 'secondary'"
+                      :text="!localCustomScrollbar" class="w-full" @click="setCustomScrollbar(true)" />
+                    <Button label="Native" :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
+                      :text="localCustomScrollbar" class="w-full" @click="setCustomScrollbar(false)" />
+                  </div>
+                  <div class="px-1 w-full">
+                    <Divider class="m-0 py-1"/>
+                  </div>
+                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleCustomScrollbar()">
+                    Toggle Custom Scrollbar
+                  </ChipButton>
                 </div>
-                <Button label="Toggle Custom Scrollbar" severity="primary" text class="w-full" @click="toggleCustomScrollbar()" />
               </div>              
             </div>
           </section>
@@ -57,7 +79,60 @@
       <h2 class="m-0 text-xl bold-700 text-slate-800 dark:text-slate-50">Components</h2>
       <Divider />
       <div class="flex flex-col items-center gap-6 justify-center">
-        <div class="flex flex-wrap justify-center gap-4 ">
+        <div class="grid grid-cols-2 justify-center gap-4 max-w-[75%]">
+          <ChipButton class="w-full" severity="primary" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="primary" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="secondary" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="secondary" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="success" :ripple-color="false" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="success" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="info" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="info" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="warn" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="warn" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="help" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="help" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="danger" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="danger" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+          <ChipButton class="w-full" severity="contrast" :ripple-color="true" v-ripple>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            <div class="pt-4">
+              <Button class="w-full" icon="pi pi-bookmark" severity="contrast" aria-label="Bookmark" label="Button"  />
+            </div>
+          </ChipButton>
+        </div>
+      </div>
+      <Divider />
+      <div class="flex flex-col items-center gap-6 justify-center">
+        <div class="flex flex-wrap justify-center gap-4">
           <Button icon="pi pi-check" aria-label="Filter" label="Button" />
           <Button icon="pi pi-bookmark" severity="secondary" aria-label="Bookmark" label="Button" />
           <Button icon="pi pi-search" severity="success" aria-label="Search" label="Button" />
@@ -134,64 +209,6 @@
       </div>
       <Divider />
       <div class="flex flex-col gap-8 items-center justify-center">
-        <Select optionLabel="name" placeholder="Select a value"></Select>
-        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
-        <div class="card flex justify-center">
-          <div class="flex gap-4">
-            <div v-for="category of categories" :key="category.key" class="flex align-center gap-2">
-              <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name"
-                :invalid="category.invalid" />
-              <label :for="category.key">{{ category.name }}</label>
-            </div>
-          </div>
-        </div>
-        <div class="card flex justify-content-center gap-4">
-          <ToggleSwitch v-model="checked" />
-          <ToggleSwitch v-model="notChecked" :invalid="!notChecked" />
-        </div>
-        <div>
-          <ToggleButton v-model="checked" onLabel="On" offLabel="Off" />
-        </div>
-        <div class="flex flex-col items-center justify-center gap-2">
-          <div class="flex items-center justify-center gap-2">
-            <Tag value="Primary"></Tag>
-            <Tag severity="secondary" value="Secondary"></Tag>
-            <Tag severity="success" value="Success"></Tag>
-            <Tag severity="info" value="Info"></Tag>
-            <Tag severity="warn" value="Warn"></Tag>
-            <Tag severity="danger" value="Danger"></Tag>
-            <Tag severity="contrast" value="Contrast"></Tag>
-          </div>
-          <Tag severity="danger" class="text-base py-4 px-6">{{ '¿Estás seguro de que deseas eliminar el rol?' }}</Tag>
-        </div>
-        <div class="flex gap-4 justify-center">
-          <Message severity="success">Success Message</Message>
-          <Message severity="info">Info Message</Message>
-          <Message severity="warn">Warn Message</Message>
-          <Message severity="error">Error Message</Message>
-          <Message severity="secondary">Secondary Message</Message>
-          <Message severity="contrast">Contrast Message</Message>
-        </div>
-        <div class="card flex justify-center">
-          <Toast />
-          <div class="flex flex-wrap gap-2">
-            <Button label="Success" severity="success" @click="showSuccess" />
-            <Button label="Info" severity="info" @click="showInfo" />
-            <Button label="Warn" severity="warn" @click="showWarn" />
-            <Button label="Error" severity="danger" @click="showError" />
-            <Button label="Secondary" severity="secondary" @click="showSecondary" />
-            <Button label="Contrast" severity="contrast" @click="showContrast" />
-          </div>
-        </div>
-        <div class="card flex flex-wrap justify-center gap-2">
-          <Badge value="2"></Badge>
-          <Badge value="6" severity="secondary"></Badge>
-          <Badge value="8" severity="success"></Badge>
-          <Badge value="4" severity="info"></Badge>
-          <Badge value="9" severity="warn"></Badge>
-          <Badge value="3" severity="danger"></Badge>
-          <Badge value="5" severity="contrast"></Badge>
-        </div>
         <div class="card w-full">
           <MeterGroup :value="meters" labelPosition="start">
             <template #label="{ value }">
@@ -233,6 +250,64 @@
             </template>
           </MeterGroup>
         </div>
+        <Select optionLabel="name" placeholder="Select a value"></Select>
+        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
+        <div class="flex gap-4 justify-center">
+          <Message severity="success">Success Message</Message>
+          <Message severity="info">Info Message</Message>
+          <Message severity="warn">Warn Message</Message>
+          <Message severity="error">Error Message</Message>
+          <Message severity="secondary">Secondary Message</Message>
+          <Message severity="contrast">Contrast Message</Message>
+        </div>
+        <div class="card flex justify-center">
+          <Toast />
+          <div class="flex flex-wrap gap-2">
+            <Button label="Success" severity="success" @click="showSuccess" />
+            <Button label="Info" severity="info" @click="showInfo" />
+            <Button label="Warn" severity="warn" @click="showWarn" />
+            <Button label="Error" severity="danger" @click="showError" />
+            <Button label="Secondary" severity="secondary" @click="showSecondary" />
+            <Button label="Contrast" severity="contrast" @click="showContrast" />
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-2">
+          <div class="flex items-center justify-center gap-2">
+            <Tag value="Primary"></Tag>
+            <Tag severity="secondary" value="Secondary"></Tag>
+            <Tag severity="success" value="Success"></Tag>
+            <Tag severity="info" value="Info"></Tag>
+            <Tag severity="warn" value="Warn"></Tag>
+            <Tag severity="danger" value="Danger"></Tag>
+            <Tag severity="contrast" value="Contrast"></Tag>
+          </div>
+          <Tag severity="danger" class="text-sm py-2 px-3">{{ '¿Estás seguro de que deseas eliminar el rol?' }}</Tag>
+        </div>
+        <div class="card flex flex-wrap justify-center gap-2">
+          <Badge value="2"></Badge>
+          <Badge value="6" severity="secondary"></Badge>
+          <Badge value="8" severity="success"></Badge>
+          <Badge value="4" severity="info"></Badge>
+          <Badge value="9" severity="warn"></Badge>
+          <Badge value="3" severity="danger"></Badge>
+          <Badge value="5" severity="contrast"></Badge>
+        </div>
+        <div class="card flex justify-center">
+          <div class="flex gap-4">
+            <div v-for="category of categories" :key="category.key" class="flex align-center gap-2">
+              <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name"
+                :invalid="category.invalid" />
+              <label :for="category.key">{{ category.name }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="card flex justify-content-center gap-4">
+          <ToggleSwitch v-model="checked" />
+          <ToggleSwitch v-model="notChecked" :invalid="!notChecked" />
+        </div>
+        <div>
+          <ToggleButton v-model="checked" onLabel="On" offLabel="Off" />
+        </div>
       </div>
     </div>
   </div>
@@ -256,6 +331,7 @@ import {
   toggleCustomScrollbar,
   setCustomScrollbar,
 } from '@/utilities/preferencesUtils'
+import ChipButton from '@/components/ChipButtons/ChipButton.vue'
 
 
 const preferencesStore = usePreferencesStore()
