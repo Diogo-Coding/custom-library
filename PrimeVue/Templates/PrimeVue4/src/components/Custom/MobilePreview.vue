@@ -35,7 +35,7 @@
       <div class="iframe-header flex justify-between items-center">
         <Button @click="closePreview()" label="Close" icon="pi pi-times" severity="danger" class="rounded-none z-0" />
         <a :href="url" target="_blank" class="grow h-full">
-          <Tag class="hover:cursor-pointer hover:underline w-full rounded-none h-full">
+          <Tag class="hover:cursor-pointer hover:underline w-full rounded-none h-full flex items-center justify-between gap-2 pr-4">
             <div>
               <span class="text-ellipsis overflow-hidden w-12">{{ url }}</span>
             </div>
