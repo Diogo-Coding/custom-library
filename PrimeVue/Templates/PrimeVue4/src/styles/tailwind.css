@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./brand.css";
 @import "tailwindcss-primeui";
 
 @layer theme, base, components, utilities;
@@ -16,5 +17,16 @@
   html {
     font-family: 'Inter var', sans-serif;
     font-feature-settings: "cv11";
+    --p-brand-50:  var(---color-brand-50);
+    --p-brand-100: var(---color-brand-100);
+    --p-brand-200: var(---color-brand-200);
+    --p-brand-300: var(---color-brand-300);
+    --p-brand-400: var(---color-brand-400);
+    --p-brand-500: var(---color-brand-500);
+    --p-brand-600: var(---color-brand-600);
+    --p-brand-700: var(---color-brand-700);
+    --p-brand-800: var(---color-brand-800);
+    --p-brand-900: var(---color-brand-900);
+    --p-brand-950: var(---color-brand-950);
   }
 }

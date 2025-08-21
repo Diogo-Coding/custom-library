@@ -3,19 +3,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 import NotFound from '../views/Errors/NotFound.vue'
 import SomethingWentWrong from '../views/Errors/SomethingWentWrong.vue'
 
-import HomeView from '../views/MainViews/HomeView.vue'
+import MainHome from '../views/MainViews/MainHome.vue'
 import MainRouter from '@/views/MainRouter.vue'
-import ComponentView from '../views/MainViews/OtherView.vue'
-
+import TemplatesRouter from '../views/TemplatesRouter.vue'
+import TemplatesHome from '@/views/Templates/TemplatesHome.vue'
+import TemplatesPage from '@/views/Templates/TemplatesPage.vue'
 
 /**
  * Routes
- * 
+ *
  * The routes are divided into two groups:
  * 1. Development pages
  * 2. Production pages
  * 3. Control pages
- * 
+ *
  * The development pages are used for testing and debugging purposes.
  * The main pages are used for the actual application.
  * The control pages are used for managing the application.
@@ -23,9 +24,10 @@ import ComponentView from '../views/MainViews/OtherView.vue'
  * Grouping pages by their purpose helps to keep the code organized and maintainable.
  * It also allows for better organization and navigation within the application.
  * Each group can have a different set of themes, prefences, meta tags and other settings that can influence the user experience.
- * 
+ *
  */
-const routes = [ // Routes
+const routes = [
+  // Routes
   {
     path: '/',
     redirect: '/main'
@@ -35,14 +37,10 @@ const routes = [ // Routes
   {
     path: '/dev',
     name: 'Dev Page',
-    meta: {
-      requiresAuth: true,
-      title: 'Dev Page'
-    },
     children: [
       {
         path: 'configuration',
-        name: 'Configuration Page',
+        name: 'Configuration',
         component: () => import('../views/_Configuration/Configuration.vue'),
         meta: {
           title: 'Configuration Page'
@@ -54,27 +52,50 @@ const routes = [ // Routes
   // ========================= ========== ========================= \\
   {
     path: '/main',
-    name: 'Main Page',
+    name: 'MainRouter',
     component: MainRouter,
     redirect: '/main/home',
     meta: {
-      requiresAuth: true,
-      title: 'Redirect Home'
+      keepAlive: true,
+      title: 'Templates'
     },
     children: [
       {
         path: 'home',
-        name: 'Home',
-        component: HomeView,
+        name: 'MainHome',
+        component: MainHome,
         meta: {
+          keepAlive: true,
           title: 'Home'
+        }
+      }
+    ]
+  },
+  {
+    path: '/templates',
+    name: 'TemplatesRouter',
+    component: TemplatesRouter,
+    redirect: '/templates/home',
+    meta: {
+      keepAlive: true,
+      title: 'Templates'
+    },
+    children: [
+      {
+        path: 'home',
+        name: 'TemplatesHome',
+        component: TemplatesHome,
+        meta: {
+          keepAlive: true,
+          title: 'Templates'
         }
       },
       {
-        path: 'other',
-        name: 'Other Page',
-        component: ComponentView,
+        path: 'page',
+        name: 'TemplatesPage',
+        component: TemplatesPage,
         meta: {
+          keepAlive: true,
           title: 'Other Page'
         }
       }
@@ -84,7 +105,7 @@ const routes = [ // Routes
   // ========================= ============= ========================= \\
   {
     path: '/errors/something-went-wrong',
-    name: 'somethingWentWrong',
+    name: 'SomethingWentWrong',
     component: SomethingWentWrong,
     meta: {
       title: 'Algo salió mal'
@@ -100,9 +121,8 @@ const routes = [ // Routes
   {
     path: '/:pathMatch(.*)*', // Captura todas las rutas no definidas
     redirect: '/not-found'
-  },
+  }
 ]
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -116,19 +136,20 @@ router.onError((err) => {
     '%c [ERROR] %c Error en la ruta -->> ',
     'font-weight: bold; letter-spacing: 1px; color: #fff; padding: 2px; border-radius: 2px;',
     'background: #ff4444; color: #ffffff; padding: 2px; border-radius: 2px;',
-    err, lastNavigation
-  );
+    err,
+    lastNavigation
+  )
 
-  window.location.href = '/errors/something-went-wrong';
-});
+  window.location.href = '/errors/something-went-wrong'
+})
 
 router.beforeEach((to, from) => {
-  if (to.meta.title) document.title = 'Template App - ' +  to.meta.title
+  if (to.meta.title) document.title = 'Template App - ' + to.meta.title
   else document.title = 'Template App'
-  
+
   const additional_info = {
     from: from,
-    to: to,
+    to: to
   }
   if (from.path !== '/') lastNavigation = additional_info
 
@@ -136,12 +157,15 @@ router.beforeEach((to, from) => {
     '%c Route change triggered -->> %c - %c From: %s %c - %c To: %s %c - %c Additional Info: %o',
     'background: #00695c; color: #fff; padding: 2px; border-radius: 2px;',
     'background: transparent',
-    'background: #444; color: #badaff; padding: 2px; border-radius: 2px;', from.path,
+    'background: #444; color: #badaff; padding: 2px; border-radius: 2px;',
+    from.path,
     'background: transparent',
-    'background: #444; color: #badaff; padding: 2px; border-radius: 2px;', to.path,
+    'background: #444; color: #badaff; padding: 2px; border-radius: 2px;',
+    to.path,
     'background: transparent',
-    'background: #334155; color: #badaff; padding: 2px; border-radius: 2px;', additional_info
-  );
+    'background: #334155; color: #badaff; padding: 2px; border-radius: 2px;',
+    additional_info
+  )
 })
 
 export default router

@@ -1,0 +1,108 @@
+/* Utilidad base para todos los botones */
+.p-button-custom {
+  border: none;
+  color: white;
+}
+
+/* SPRING */
+.p-button-spring {
+  background-color: var(--spring) !important;
+}
+.p-button-spring:hover {
+  background-color: var(--darkspring) !important;
+}
+.p-button-spring:active {
+  background-color: #000d1f !important;
+}
+
+/* DARKSPRING (si lo usas como independiente) */
+.p-button-darkspring {
+  background-color: var(--darkspring) !important;
+}
+.p-button-darkspring:hover {
+  background-color: #1e293b !important;
+}
+.p-button-darkspring:active {
+  background-color: #000613 !important;
+}
+
+/* VULCANO */
+.p-button-vulcano {
+  background-color: var(--vulcano) !important;
+  color: white !important;
+}
+.p-button-vulcano:hover {
+  background-color: #003426 !important;
+}
+.p-button-vulcano:active {
+  background-color: #00281d !important;
+}
+
+/* VULCANO SECONDARY */
+.p-button-vulcano-secondary {
+  background-color: var(--vulcanosecondary) !important;
+  color: white !important;
+}
+.p-button-vulcano-secondary:hover {
+  background-color: #a38d52 !important;
+}
+.p-button-vulcano-secondary:active {
+  background-color: #8f7c45 !important;
+}
+
+/* BITÁCORA */
+.p-button-bitacora {
+  background-color: var(--bitacora) !important;
+}
+.p-button-bitacora:hover {
+  background-color: #00a2c2 !important;
+}
+.p-button-bitacora:active {
+  background-color: #008aa6 !important;
+}
+
+/* BITÁCORA SECONDARY */
+.p-button-bitacora-secondary {
+  background-color: var(--bitacorasecondary) !important;
+}
+.p-button-bitacora-secondary:hover {
+  background-color: #c51865 !important;
+}
+.p-button-bitacora-secondary:active {
+  background-color: #a01454 !important;
+}
+
+/* BITÁCORA TERTIARY */
+.p-button-bitacora-tertiary {
+  background-color: var(--bitacoratertiary);
+  color: #000;
+}
+.p-button-bitacora-tertiary:hover {
+  background-color: #e6d71a !important;
+}
+.p-button-bitacora-tertiary:active {
+  background-color: #c2b417 !important;
+}
+
+/* GRAN ARONA */
+.p-button-granarona {
+  background-color: var(--granarona) !important;
+}
+.p-button-granarona:hover {
+  background-color: #002f3f !important;
+}
+.p-button-granarona:active {
+  background-color: #00222e !important;
+}
+
+/* GRAN ARONA SECONDARY */
+.p-button-granarona-secondary {
+  background-color: var(--granaronasecondary) !important;
+  color: #1a1a1a;
+}
+.p-button-granarona-secondary:hover {
+  background-color: #bcb6aa !important;
+}
+.p-button-granarona-secondary:active {
+  background-color: #a49e94 !important;
+}

@@ -1,13 +1,15 @@
 <template>
   <div class="page-scroll keep-alive-scrollbar" ref="scrollable">
     <div class="pt-20 pl-20">
-      <BackButton label="Go back" icon="pi pi-arrow-left" size="large" text/>
+      <BackButton label="Go back" icon="pi pi-arrow-left" size="large" text />
     </div>
     <div class="flex flex-col items-center justify-center px-[20%] pb-20 pt-8">
       <h1 class="!text-3xl m-0 bold-900 text-slate-800 dark:text-slate-200">Configuration Page</h1>
       <div class="pb-12">
         <InfoBox animated-line lineWidth="120px" class="h-full rounded-2xl">
-          <section class="flex flex-col bg-slate-50 dark:bg-surface-900 rounded-2xl p-6 h-full shadow ring-1 ring-slate-500/50">
+          <section
+            class="flex flex-col bg-slate-50 dark:bg-surface-900 rounded-2xl p-6 h-full shadow ring-1 ring-slate-500/50"
+          >
             <div>
               <h4 class="text-xl font-bold m-0 dark:text-slate-50">Options</h4>
             </div>
@@ -18,14 +20,26 @@
                 <h4 class="m-0 font-semibold dark:text-slate-300">Theme</h4>
                 <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
                   <div class="flex items-center gap-1 w-full">
-                    <Button v-for="theme in availableThemes()" :key="theme" :label="theme.name"
-                      :severity="theme.value == localTheme ? 'primary' : 'secondary'" :icon="theme.icon"
-                      :text="theme.value != localTheme" class="w-full px-4" @click="theme.function()" />
+                    <Button
+                      v-for="theme in availableThemes()"
+                      :key="theme"
+                      :label="theme.name"
+                      :severity="theme.value == localTheme ? 'primary' : 'secondary'"
+                      :icon="theme.icon"
+                      :text="theme.value != localTheme"
+                      class="w-full px-4"
+                      @click="theme.function()"
+                    />
                   </div>
                   <div class="px-1 w-full">
-                    <Divider class="m-0 py-1"/>
+                    <Divider class="m-0 py-1" />
                   </div>
-                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleDarkMode()">
+                  <ChipButton
+                    class="w-full text-center font-semibold"
+                    severity="primary"
+                    v-ripple
+                    @click="toggleDarkMode()"
+                  >
                     Toggle Theme
                   </ChipButton>
                 </div>
@@ -35,19 +49,44 @@
                 <h4 class="m-0 font-semibold dark:text-slate-300">Font Size</h4>
                 <div class="flex flex-col gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
                   <div class="grid grid-cols-4 gap-1 w-full">
-                    <Button label="Small" :severity="localFontSize == 12 ? 'primary' : 'secondary'"
-                      :text="localFontSize != 12" class="w-full" @click="setFontSize(12)" />
-                    <Button label="Normal" :severity="localFontSize == 14 ? 'primary' : 'secondary'"
-                      :text="localFontSize != 14" class="w-full" @click="setFontSize(14)" />
-                    <Button label="Big" :severity="localFontSize == 16 ? 'primary' : 'secondary'"
-                      :text="localFontSize != 16" class="w-full" @click="setFontSize(16)" />
-                    <Button label="Giant" :severity="localFontSize == 18 ? 'primary' : 'secondary'"
-                      :text="localFontSize != 18" class="w-full" @click="setFontSize(18)" />
+                    <Button
+                      label="Small"
+                      :severity="localFontSize == 12 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 12"
+                      class="w-full"
+                      @click="setFontSize(12)"
+                    />
+                    <Button
+                      label="Normal"
+                      :severity="localFontSize == 14 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 14"
+                      class="w-full"
+                      @click="setFontSize(14)"
+                    />
+                    <Button
+                      label="Big"
+                      :severity="localFontSize == 16 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 16"
+                      class="w-full"
+                      @click="setFontSize(16)"
+                    />
+                    <Button
+                      label="Giant"
+                      :severity="localFontSize == 18 ? 'primary' : 'secondary'"
+                      :text="localFontSize != 18"
+                      class="w-full"
+                      @click="setFontSize(18)"
+                    />
                   </div>
                   <div class="px-1 w-full">
-                    <Divider class="m-0 py-1"/>
+                    <Divider class="m-0 py-1" />
                   </div>
-                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="setFontSize(14)">
+                  <ChipButton
+                    class="w-full text-center font-semibold"
+                    severity="primary"
+                    v-ripple
+                    @click="setFontSize(14)"
+                  >
                     Reset Font Size
                   </ChipButton>
                 </div>
@@ -59,19 +98,34 @@
                 <h4 class="m-0 font-semibold dark:text-slate-300">Custom Scrollbar</h4>
                 <div class="flex flex-col items-center gap-1 p-2 bg-white dark:bg-surface-800 shadow rounded-lg">
                   <div class="flex items-center gap-1 w-full">
-                    <Button label="Custom" :severity="localCustomScrollbar ? 'primary' : 'secondary'"
-                      :text="!localCustomScrollbar" class="w-full" @click="setCustomScrollbar(true)" />
-                    <Button label="Native" :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
-                      :text="localCustomScrollbar" class="w-full" @click="setCustomScrollbar(false)" />
+                    <Button
+                      label="Custom"
+                      :severity="localCustomScrollbar ? 'primary' : 'secondary'"
+                      :text="!localCustomScrollbar"
+                      class="w-full"
+                      @click="setCustomScrollbar(true)"
+                    />
+                    <Button
+                      label="Native"
+                      :severity="!localCustomScrollbar ? 'primary' : 'secondary'"
+                      :text="localCustomScrollbar"
+                      class="w-full"
+                      @click="setCustomScrollbar(false)"
+                    />
                   </div>
                   <div class="px-1 w-full">
-                    <Divider class="m-0 py-1"/>
+                    <Divider class="m-0 py-1" />
                   </div>
-                  <ChipButton class="w-full text-center font-semibold" severity="primary" v-ripple @click="toggleCustomScrollbar()">
+                  <ChipButton
+                    class="w-full text-center font-semibold"
+                    severity="primary"
+                    v-ripple
+                    @click="toggleCustomScrollbar()"
+                  >
                     Toggle Custom Scrollbar
                   </ChipButton>
                 </div>
-              </div>              
+              </div>
             </div>
           </section>
         </InfoBox>
@@ -81,51 +135,59 @@
       <div class="flex flex-col items-center gap-6 justify-center">
         <div class="grid grid-cols-2 justify-center gap-4 max-w-[75%]">
           <ChipButton class="w-full" severity="primary" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="primary" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="primary" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="secondary" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="secondary" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="secondary" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="success" :ripple-color="false" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="success" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="success" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="info" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="info" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="info" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="warn" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="warn" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="warn" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="help" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="help" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="help" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="danger" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="danger" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="danger" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
           <ChipButton class="w-full" severity="contrast" :ripple-color="true" v-ripple>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem, et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam enim mollitia vitae sint exercitationem,
+            et quasi. Id amet consequuntur at, a eum provident sunt non inventore aliquid. Ea, dignissimos sunt.
             <div class="pt-4">
-              <Button class="w-full" icon="pi pi-bookmark" severity="contrast" aria-label="Bookmark" label="Button"  />
+              <Button class="w-full" icon="pi pi-bookmark" severity="contrast" aria-label="Bookmark" label="Button" />
             </div>
           </ChipButton>
         </div>
@@ -142,8 +204,8 @@
           <Button icon="pi pi-times" severity="danger" aria-label="Cancel" label="Button" />
           <Button icon="pi pi-star" severity="contrast" aria-label="Star" label="Button" />
         </div>
-        
-        <div class="flex flex-wrap justify-center gap-4 ">
+
+        <div class="flex flex-wrap justify-center gap-4">
           <Button icon="pi pi-check" rounded aria-label="Filter" label="Button" />
           <Button icon="pi pi-bookmark" severity="secondary" rounded aria-label="Bookmark" label="Button" />
           <Button icon="pi pi-search" severity="success" rounded aria-label="Search" label="Button" />
@@ -154,41 +216,107 @@
           <Button icon="pi pi-star" severity="contrast" rounded aria-label="Star" label="Button" />
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 ">
-          <Button icon="pi pi-check" rounded variant="outlined" aria-label="Filter" label="Button" /> <Button
-            icon="pi pi-bookmark" severity="secondary" rounded variant="outlined" aria-label="Bookmark"
-            label="Button" />
-          <Button icon="pi pi-search" severity="success" rounded variant="outlined" aria-label="Search"
-            label="Button" />
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button icon="pi pi-check" rounded variant="outlined" aria-label="Filter" label="Button" />
+          <Button
+            icon="pi pi-bookmark"
+            severity="secondary"
+            rounded
+            variant="outlined"
+            aria-label="Bookmark"
+            label="Button"
+          />
+          <Button
+            icon="pi pi-search"
+            severity="success"
+            rounded
+            variant="outlined"
+            aria-label="Search"
+            label="Button"
+          />
           <Button icon="pi pi-user" severity="info" rounded variant="outlined" aria-label="User" label="Button" />
-          <Button icon="pi pi-bell" severity="warn" rounded variant="outlined" aria-label="Notification"
-            label="Button" />
+          <Button
+            icon="pi pi-bell"
+            severity="warn"
+            rounded
+            variant="outlined"
+            aria-label="Notification"
+            label="Button"
+          />
           <Button icon="pi pi-heart" severity="help" rounded variant="outlined" aria-label="Favorite" label="Button" />
           <Button icon="pi pi-times" severity="danger" rounded variant="outlined" aria-label="Cancel" label="Button" />
           <Button icon="pi pi-star" severity="contrast" rounded variant="outlined" aria-label="Star" label="Button" />
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 ">
+        <div class="flex flex-wrap justify-center gap-4">
           <Button icon="pi pi-check" variant="text" raised rounded aria-label="Filter" label="Button" />
-          <Button icon="pi pi-bookmark" severity="secondary" variant="text" raised rounded aria-label="Bookmark"
-            label="Button" />
-          <Button icon="pi pi-search" severity="success" variant="text" raised rounded aria-label="Search"
-            label="Button" />
+          <Button
+            icon="pi pi-bookmark"
+            severity="secondary"
+            variant="text"
+            raised
+            rounded
+            aria-label="Bookmark"
+            label="Button"
+          />
+          <Button
+            icon="pi pi-search"
+            severity="success"
+            variant="text"
+            raised
+            rounded
+            aria-label="Search"
+            label="Button"
+          />
           <Button icon="pi pi-user" severity="info" variant="text" raised rounded aria-label="User" label="Button" />
-          <Button icon="pi pi-bell" severity="warn" variant="text" raised rounded aria-label="Notification"
-            label="Button" />
-          <Button icon="pi pi-heart" severity="help" variant="text" raised rounded aria-label="Favorite"
-            label="Button" />
-          <Button icon="pi pi-times" severity="danger" variant="text" raised rounded aria-label="Cancel"
-            label="Button" />
-          <Button icon="pi pi-star" severity="contrast" variant="text" raised rounded aria-label="Star"
-            label="Button" />
+          <Button
+            icon="pi pi-bell"
+            severity="warn"
+            variant="text"
+            raised
+            rounded
+            aria-label="Notification"
+            label="Button"
+          />
+          <Button
+            icon="pi pi-heart"
+            severity="help"
+            variant="text"
+            raised
+            rounded
+            aria-label="Favorite"
+            label="Button"
+          />
+          <Button
+            icon="pi pi-times"
+            severity="danger"
+            variant="text"
+            raised
+            rounded
+            aria-label="Cancel"
+            label="Button"
+          />
+          <Button
+            icon="pi pi-star"
+            severity="contrast"
+            variant="text"
+            raised
+            rounded
+            aria-label="Star"
+            label="Button"
+          />
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 ">
+        <div class="flex flex-wrap justify-center gap-4">
           <Button icon="pi pi-check" variant="text" rounded aria-label="Filter" label="Button" />
-          <Button icon="pi pi-bookmark" severity="secondary" variant="text" rounded aria-label="Bookmark"
-            label="Button" />
+          <Button
+            icon="pi pi-bookmark"
+            severity="secondary"
+            variant="text"
+            rounded
+            aria-label="Bookmark"
+            label="Button"
+          />
           <Button icon="pi pi-search" severity="success" variant="text" rounded aria-label="Search" label="Button" />
           <Button icon="pi pi-user" severity="info" variant="text" rounded aria-label="User" label="Button" />
           <Button icon="pi pi-bell" severity="warn" variant="text" rounded aria-label="Notification" label="Button" />
@@ -221,8 +349,10 @@
                           <span class="text-surface-500 dark:text-surface-400 text-sm">{{ val.label }}</span>
                           <span class="font-bold text-lg">{{ val.value }}%</span>
                         </div>
-                        <span class="w-8 h-8 rounded-full inline-flex justify-center items-center text-center"
-                          :style="{ backgroundColor: `${val.color1}`, color: '#ffffff' }">
+                        <span
+                          class="w-8 h-8 rounded-full inline-flex justify-center items-center text-center"
+                          :style="{ backgroundColor: `${val.color1}`, color: '#ffffff' }"
+                        >
                           <i :class="val.icon" />
                         </span>
                       </div>
@@ -232,8 +362,13 @@
               </div>
             </template>
             <template #meter="slotProps">
-              <span :class="slotProps.class"
-                :style="{ background: `linear-gradient(to right, ${slotProps.value.color1}, ${slotProps.value.color2})`, width: slotProps.size }" />
+              <span
+                :class="slotProps.class"
+                :style="{
+                  background: `linear-gradient(to right, ${slotProps.value.color1}, ${slotProps.value.color2})`,
+                  width: slotProps.size
+                }"
+              />
             </template>
             <template #start="{ totalPercent }">
               <div class="flex justify-between mt-4 mb-2 relative">
@@ -295,8 +430,13 @@
         <div class="card flex justify-center">
           <div class="flex gap-4">
             <div v-for="category of categories" :key="category.key" class="flex align-center gap-2">
-              <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name"
-                :invalid="category.invalid" />
+              <Checkbox
+                v-model="selectedCategories"
+                :inputId="category.key"
+                name="category"
+                :value="category.name"
+                :invalid="category.invalid"
+              />
               <label :for="category.key">{{ category.name }}</label>
             </div>
           </div>
@@ -320,25 +460,24 @@ useKeepAliveScroll(scrollable)
 
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import InfoBox from '@/components/InfoBox.vue'
+import InfoBox from '@/components/Custom/InfoBox.vue'
 import { useToast } from 'primevue/usetoast'
-import BackButton from '@/components/BackButton.vue'
+import BackButton from '@/components/Custom/BackButton.vue'
 import { usePreferencesStore } from '@/stores/preferences'
+import ChipButton from '@/components/ChipButtons/ChipButton.vue'
 import {
   toggleDarkMode,
   availableThemes,
   setFontSize,
   toggleCustomScrollbar,
-  setCustomScrollbar,
+  setCustomScrollbar
 } from '@/utilities/preferencesUtils'
-import ChipButton from '@/components/ChipButtons/ChipButton.vue'
-
 
 const preferencesStore = usePreferencesStore()
 const {
   themeMode: localTheme,
   fontSize: localFontSize,
-  customScrollbar: localCustomScrollbar,
+  customScrollbar: localCustomScrollbar
 } = storeToRefs(preferencesStore)
 
 // Checkboxes
@@ -346,7 +485,7 @@ const categories = ref([
   { name: 'Accounting', key: 'A', invalid: false },
   { name: 'Marketing', key: 'M', invalid: false },
   { name: 'Production', key: 'P', invalid: true },
-  { name: 'Research', key: 'R', invalid: true },
+  { name: 'Research', key: 'R', invalid: true }
 ])
 const selectedCategories = ref(['Marketing', 'Production'])
 
@@ -356,18 +495,22 @@ const notChecked = ref(false)
 
 // Toast
 const toast = useToast()
-const showSuccess   = () => toast.add({ severity: 'success',   summary: 'Success Message',   detail: 'Message Content', life: 3000 })
-const showInfo      = () => toast.add({ severity: 'info',      summary: 'Info Message',      detail: 'Message Content', life: 3000 })
-const showWarn      = () => toast.add({ severity: 'warn',      summary: 'Warn Message',      detail: 'Message Content', life: 3000 })
-const showError     = () => toast.add({ severity: 'error',     summary: 'Error Message',     detail: 'Message Content', life: 3000 })
-const showSecondary = () => toast.add({ severity: 'secondary', summary: 'Secondary Message', detail: 'Message Content', life: 3000 })
-const showContrast  = () => toast.add({ severity: 'contrast',  summary: 'Contrast Message',  detail: 'Message Content', life: 3000 })
+const showSuccess = () =>
+  toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', life: 3000 })
+const showInfo = () => toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', life: 3000 })
+const showWarn = () => toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', life: 3000 })
+const showError = () =>
+  toast.add({ severity: 'error', summary: 'Error Message', detail: 'Message Content', life: 3000 })
+const showSecondary = () =>
+  toast.add({ severity: 'secondary', summary: 'Secondary Message', detail: 'Message Content', life: 3000 })
+const showContrast = () =>
+  toast.add({ severity: 'contrast', summary: 'Contrast Message', detail: 'Message Content', life: 3000 })
 
 // MeterGroup demo data
 const meters = ref([
-  { label: 'Apps',      color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'pi pi-table' },
-  { label: 'Messages',  color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'pi pi-inbox' },
-  { label: 'Media',     color1: '#60a5fa', color2: '#c084fc', value: 20, icon: 'pi pi-image' },
-  { label: 'System',    color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'pi pi-cog'   },
+  { label: 'Apps', color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'pi pi-table' },
+  { label: 'Messages', color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'pi pi-inbox' },
+  { label: 'Media', color1: '#60a5fa', color2: '#c084fc', value: 20, icon: 'pi pi-image' },
+  { label: 'System', color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'pi pi-cog' }
 ])
 </script>

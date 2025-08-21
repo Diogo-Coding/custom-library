@@ -1,0 +1,134 @@
+:root {
+  --spring: #002557;
+  --darkspring: #001025;
+  --vulcano: #004232;
+  --vulcanosecondary: #b9a064;
+  --bitacora: #00b5db;
+  --bitacorasecondary: #e21a72;
+  --bitacoratertiary: #ffee1c;
+  --granarona: #003e58;
+  --granaronasecondary: #d0cabd;
+
+  --surface-ground: #f9fafb;
+  --surface-section: #ffffff;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-border: #dfe7ef;
+  --surface-hover: #f6f9fc;
+
+  --spinner-size: 220px;                  /* tamaño general */
+  --spinner-thickness: 10px;              /* grosor del anillo */
+  --spinner-color-active: var(--spring); /* color de la parte marcada */
+  --spinner-color-inactive: #eee;         /* color de la parte no marcada */
+  --spinner-marked-percent: 40%;          /* porcentaje del círculo que es visible */
+  --spinner-speed: 1.2s;                  /* velocidad de rotación */
+
+  --pending-status-color: rgb(243, 156, 18);
+  --processing-status-color: rgb(243, 156, 18);
+  --completed-status-color: rgb(47, 133, 90);
+  --canceled-status-color: rgb(221, 75, 57);
+  --unknown-status-color: rgb(0, 0, 0);
+
+  --lateral-menu-width: 250px;
+  --nav-bar-height: 60px;
+}
+
+.dark {
+  --spring: #00408f;             /* más luminoso y saturado */
+  --darkspring: #002447;         /* un poco más claro */
+  --vulcano: #00684f;            /* verde más vivo */
+  --vulcanosecondary: #d4b772;   /* más cálido y luminoso */
+  --bitacora: #00d0ff;           /* más brillante */
+  --bitacorasecondary: #ff2a88;  /* más saturado */
+  --bitacoratertiary: #fff04a;   /* amarillo más vivo */
+  --granarona: #006283;          /* más saturado */
+  --granaronasecondary: #ede4d0; /* más claro */
+}
+
+.c-spring {
+  color: var(--spring);
+}
+.c-darkspring {
+  color: var(--darkspring);
+}
+.c-vulcano {
+  color: var(--vulcano);
+}
+.c-vulcanosecondary {
+  color: var(--vulcanosecondary);
+}
+.c-bitacora {
+  color: var(--bitacora);
+}
+.c-bitacorasecondary {
+  color: var(--bitacorasecondary);
+}
+.c-bitacoratertiary {
+  color: var(--bitacoratertiary);
+}
+.c-granarona {
+  color: var(--granarona);
+}
+.c-granaronasecondary {
+  color: var(--granaronasecondary);
+}
+.bg-spring {
+  background-color: var(--spring);
+}
+.bg-darkspring {
+  background-color: var(--darkspring);
+}
+.bg-vulcano {
+  background-color: var(--vulcano);
+}
+.bg-vulcanosecondary {
+  background-color: var(--vulcanosecondary);
+}
+.bg-bitacora {
+  background-color: var(--bitacora);
+}
+.bg-bitacorasecondary {
+  background-color: var(--bitacorasecondary);
+}
+.bg-bitacoratertiary {
+  background-color: var(--bitacoratertiary);
+}
+.bg-granarona {
+  background-color: var(--granarona);
+}
+.bg-granaronasecondary {
+  background-color: var(--granaronasecondary);
+}
+
+.pending-status-color {
+  color: var(--pending-status-color);
+}
+.processing-status-color {
+  color: var(--processing-status-color);
+}
+.completed-status-color {
+  color: var(--completed-status-color);
+}
+.canceled-status-color {
+  color: var(--canceled-status-color);
+}
+.unknown-status-color {
+  color: var(--unknown-status-color);
+}
+
+.bg-pending-status-color {
+  background-color: var(--pending-status-color) !important;
+}
+.bg-processing-status-color {
+  background-color: var(--processing-status-color) !important;
+}
+.bg-completed-status-color {
+  background-color: var(--completed-status-color) !important;
+}
+.bg-canceled-status-color {
+  background-color: var(--canceled-status-color) !important;
+}
+.bg-unknown-status-color {
+  background-color: var(--unknown-status-color) !important;
+}
+

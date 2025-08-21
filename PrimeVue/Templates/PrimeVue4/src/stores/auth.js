@@ -4,21 +4,26 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
     isLoggedIn: false,
-    token: null,
+    hotels: null,
+    token: null
   }),
   getters: {
-    currentUser: state => state.user,
-    authenticated: state => state.isLoggedIn,
-    authToken: state => state.token,
+    currentUser: (state) => state.user,
+    authenticated: (state) => state.isLoggedIn,
+    authToken: (state) => state.token
   },
   actions: {
-    login({ user, token }) {
+    login({ user, hotels }) {
       this.user = user
-      this.token = token
+      this.hotels = hotels
       this.isLoggedIn = true
     },
     logout() {
       this.$reset()
-    },
+    }
+  },
+  persist: {
+    key: 'auth-store',
+    pick: ['user', 'isLoggedIn', 'hotels']
   }
 })

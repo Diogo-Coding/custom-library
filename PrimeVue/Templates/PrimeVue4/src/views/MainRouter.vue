@@ -5,12 +5,13 @@
   Also lets you customize styles for expecific section pages.
 -->
 <template>
-  <div class="main-page bg-white dark:bg-surface-950"> <!-- /main will have the background color different than the rest of the pages -->
+  <div class="main-page bg-white dark:bg-surface-950">
+    <!-- /main will have the background color different than the rest of the pages -->
     <div class="main-container">
       <router-view v-slot="{ Component, route }">
         <Transition :name="route.meta.transition || 'fade'" mode="out-in">
           <keep-alive>
-            <component :is="Component"/>
+            <component :is="Component" />
           </keep-alive>
         </Transition>
       </router-view>
@@ -18,8 +19,7 @@
   </div>
 </template>
 
-<script>
-</script>
+<script></script>
 
 <style scoped>
 .main-page {

@@ -8,16 +8,16 @@ export const useAppStore = defineStore('app', {
     isOnline: true,
     latestVersion: '1.0.0',
     globalLoading: false,
-    pwaStatus: false,
+    pwaStatus: false
   }),
   getters: {
-    getScrollPosition: state => routeKey => state.scrollPositions[routeKey] || null,
-    allScrollPositions: state => state.scrollPositions,
-    getBrowserSessionId: state => state.browserSessionId,
-    onlineStatus: state => state.isOnline,
-    loading: state => state.globalLoading,
-    version: state => state.latestVersion,
-    getPWAStatus: state => state.pwaStatus,
+    getScrollPosition: (state) => (routeKey) => state.scrollPositions[routeKey] || null,
+    allScrollPositions: (state) => state.scrollPositions,
+    getBrowserSessionId: (state) => state.browserSessionId,
+    onlineStatus: (state) => state.isOnline,
+    loading: (state) => state.globalLoading,
+    version: (state) => state.latestVersion,
+    getPWAStatus: (state) => state.pwaStatus
   },
   actions: {
     setScrollbarPosition({ key: routeKey, x: xCoord, y: yCoord }) {
@@ -26,8 +26,8 @@ export const useAppStore = defineStore('app', {
         [routeKey]: {
           x: xCoord,
           y: yCoord,
-          browserSessionId: this.browserSessionId,
-        },
+          browserSessionId: this.browserSessionId
+        }
       }
     },
     clearAllScrollPositions() {
@@ -49,10 +49,10 @@ export const useAppStore = defineStore('app', {
     },
     setPWAStatus(status) {
       this.pwaStatus = status
-    },
+    }
   },
   persist: {
     key: 'app-store',
-    pick: ['browserSessionId', 'latestVersion'],
-  },
+    pick: ['browserSessionId', 'latestVersion']
+  }
 })

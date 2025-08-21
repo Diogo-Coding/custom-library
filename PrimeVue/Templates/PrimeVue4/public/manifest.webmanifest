@@ -1,0 +1,67 @@
+{
+  "name": "Totem Link PWA App",
+  "short_name": "TotemLink",
+  "description": "Totem Link PWA App",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay"],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "intent_filters": {
+    "scope_url_scheme": "https",
+    "scope_url_host": "trashemter.springhoteles.com",
+    "scope_url_path": "/"
+  },
+  "url_handlers": [
+    {
+      "origin": "https://totemlink.springhoteles.com" 
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-new"
+  },
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://totemlink.springhoteles.com" 
+    }
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+    "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

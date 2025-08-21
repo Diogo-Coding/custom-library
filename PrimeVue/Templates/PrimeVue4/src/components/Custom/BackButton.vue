@@ -1,9 +1,11 @@
 <template>
-  <Button class="back-button" type="button" 
-    :rounded="rounded" 
+  <Button
+    class="back-button"
+    type="button"
+    :rounded="rounded"
     :text="text"
     :outlined="outlined"
-    :label="label" 
+    :label="label"
     :icon="icon"
     :severity="severity"
     :size="size"
@@ -29,31 +31,31 @@ import { useRouter } from 'vue-router'
 defineProps({
   label: {
     type: String,
-    default: '',
+    default: ''
   },
   text: {
     type: Boolean,
-    default: false,
+    default: false
   },
   outlined: {
     type: Boolean,
-    default: false,
+    default: false
   },
   rounded: {
     type: Boolean,
-    default: false,
+    default: false
   },
   severity: {
     type: String,
-    default: 'primary',
+    default: 'primary'
   },
   icon: {
     type: String,
-    default: '',
+    default: ''
   },
   size: {
     type: String,
-    default: null,
+    default: null
   }
 })
 

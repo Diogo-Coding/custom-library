@@ -1,8 +1,8 @@
 <template>
   <div
+    ref="box"
     class="box"
     :class="{ 'animation-line': animatedLine, 'show-line': !animatedOnlyOnHover }"
-    ref="box"
     @mouseover="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
@@ -13,59 +13,86 @@
         </div>
       </div>
     </div>
-    <div class="box-icon-background" v-if="boxIcon"
+    <div
+      v-if="boxIcon"
       ref="backgroudBox"
+      class="box-icon-background"
       @mouseover="onMouseEnter"
       @mouseleave="onMouseLeave"
     >
-      <i class="pi pi-eye text-2xl text-slate-100"></i>
+      <i class="pi pi-eye text-2xl text-slate-100" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const props = defineProps({
   animatedLine: {
     type: Boolean,
-    default: false,
+    default: false
   },
   animatedOnlyOnHover: {
     type: Boolean,
-    default: true,
+    default: true
   },
   animationDuration: {
     type: String,
-    default: '5s', // default animation duration
+    default: '5s' // default animation duration
   },
   lineColor: {
     type: String,
-    default: 'var(--p-primary-color)', // default color in the middle of the gradient
+    default: 'var(--p-primary-color)' // default color in the middle of the gradient
   },
   lineOutColor: {
     type: String,
-    default: 'rgba(255, 255, 255, 0)', // default color in the middle of the gradient
+    default: 'rgba(255, 255, 255, 0)' // default color in the middle of the gradient
   },
   lineWidth: {
     type: String,
-    default: '80px', // default width of the animated line
+    default: '80px' // default width of the animated line
   },
   boxIcon: {
     type: Boolean,
     default: false
   }
-});
-const box = ref(null);
+})
+const box = ref(null)
 
 function onMouseEnter() {
   if (props.animatedLine && props.animatedOnlyOnHover) {
-    if (box.value) box.value.classList.add('show-line');
+    if (box.value) box.value.classList.add('show-line')
   }
 }
 function onMouseLeave() {
   if (props.animatedLine && props.animatedOnlyOnHover) {
-    if (box.value) box.value.classList.remove('show-line');
+    if (box.value) box.value.classList.remove('show-line')
+  }
+}
+</script>
+
+<script>
+export default {
+  watch: {
+    animationDuration(newVal) {
+      document.documentElement.style.setProperty('--animation-duration', newVal)
+    },
+    lineColor(newVal) {
+      document.documentElement.style.setProperty('--line-color', newVal)
+    },
+    lineOutColor(newVal) {
+      document.documentElement.style.setProperty('--line-out-color', newVal)
+    },
+    lineWidth(newVal) {
+      document.documentElement.style.setProperty('--line-width', newVal)
+    }
+  },
+  mounted() {
+    document.documentElement.style.setProperty('--animation-duration', this.animationDuration)
+    document.documentElement.style.setProperty('--line-color', this.lineColor)
+    document.documentElement.style.setProperty('--line-out-color', this.lineOutColor)
+    document.documentElement.style.setProperty('--line-width', this.lineWidth)
   }
 }
 </script>
@@ -113,14 +140,9 @@ function onMouseLeave() {
   justify-content: center;
 }
 .animation-line::before {
-  content: "";
+  content: '';
   display: block;
-  background: linear-gradient(
-    90deg,
-    var(--line-out-color) 0%,
-    var(--line-color) 50%,
-    var(--line-out-color) 100%
-  );
+  background: linear-gradient(90deg, var(--line-out-color) 0%, var(--line-color) 50%, var(--line-out-color) 100%);
   height: 9999px;
   width: var(--line-width);
   transform: translate(0);
@@ -143,28 +165,3 @@ function onMouseLeave() {
   }
 }
 </style>
-
-<script>
-export default {
-  watch: {
-    animationDuration(newVal) {
-      document.documentElement.style.setProperty('--animation-duration', newVal);
-    },
-    lineColor(newVal) {
-      document.documentElement.style.setProperty('--line-color', newVal);
-    },
-    lineOutColor(newVal) {
-      document.documentElement.style.setProperty('--line-out-color', newVal);
-    },
-    lineWidth(newVal) {
-      document.documentElement.style.setProperty('--line-width', newVal);
-    },
-  },
-  mounted() {
-    document.documentElement.style.setProperty('--animation-duration', this.animationDuration);
-    document.documentElement.style.setProperty('--line-color', this.lineColor);
-    document.documentElement.style.setProperty('--line-out-color', this.lineOutColor);
-    document.documentElement.style.setProperty('--line-width', this.lineWidth);
-  }
-};
-</script>

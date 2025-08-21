@@ -8,7 +8,7 @@ function toggleDarkModeFunction() {
 
   document.documentElement.classList.toggle('dark')
   preferencesStore.setPreference({
-    themeMode: ['dark', 'system'].includes(preferencesStore.themeMode) ? 'light': 'dark',
+    themeMode: ['dark', 'system'].includes(preferencesStore.themeMode) ? 'light' : 'dark'
   })
 }
 
@@ -36,9 +36,9 @@ function setSystemModeFunction() {
 
 function getAvailableThemesFunction() {
   return [
-    { name: 'Light', value: 'light', icon: 'pi pi-sun', function: setLightModeFunction },
-    { name: 'Dark', value: 'dark', icon: 'pi pi-moon', function: setDarkModeFunction },
-    { name: 'System', value: 'system', icon: 'pi pi-desktop', function: setSystemModeFunction },
+    { name: 'Claro', value: 'light', icon: 'pi pi-sun', function: setLightModeFunction },
+    { name: 'Oscuro', value: 'dark', icon: 'pi pi-moon', function: setDarkModeFunction },
+    { name: 'Sistema', value: 'system', icon: 'pi pi-desktop', function: setSystemModeFunction }
   ]
 }
 
@@ -76,13 +76,19 @@ function toggleKeepScrollbarPositionsFunction() {
   setKeepScrollbarPositionsFunction(!preferencesStore.keepScrollbarPositions)
 }
 
+function setTableSizeFunction(value) {
+  const preferencesStore = usePreferencesStore()
+  preferencesStore.setPreference({ tableSize: value })
+}
+
 export const toggleDarkMode = () => toggleDarkModeFunction()
-export const setFontSize = size => setFontSizeFunction(size)
+export const setFontSize = (size) => setFontSizeFunction(size)
+export const setTableSize = (size) => setTableSizeFunction(size)
 export const setDarkMode = () => setDarkModeFunction()
 export const setLightMode = () => setLightModeFunction()
 export const setSystemMode = () => setSystemModeFunction()
 export const availableThemes = () => getAvailableThemesFunction()
 export const toggleCustomScrollbar = () => toggleCustomScrollbarFunction()
-export const setCustomScrollbar = value => setCustomScrollbarFunction(value)
+export const setCustomScrollbar = (value) => setCustomScrollbarFunction(value)
 export const toggleKeepScrollbarPositions = () => toggleKeepScrollbarPositionsFunction()
-export const setKeepScrollbarPositions = value => setKeepScrollbarPositionsFunction(value)
+export const setKeepScrollbarPositions = (value) => setKeepScrollbarPositionsFunction(value)

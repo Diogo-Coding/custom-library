@@ -1,38 +1,47 @@
 <!-- ChipButton.vue -->
 <template>
-  <div
-    :class="['chip-button', { 'chip-static': static }]"
-    :style="{
-      color: `var(--p-button-text-${severity}-color)`,
-      '--chip-normal': `var(--p-button-text-${severity}-hover-background)`,
-      '--chip-hover':  `var(--p-button-text-${severity}-active-background)`,
-      '--chip-color':  `var(--p-button-text-${severity}-color)`,
-      '--p-ripple-background': rippleColor ? `var(--chip-color)` : 'inherit',
-    }"
-    role="button"
-    tabindex="0"
-  >
-    <slot />
+  <div @click="handleClick">
+    <div
+      v-bind="$attrs"
+      :class="['chip-button', { 'chip-static': isStatic }]"
+      :style="{
+        color: `var(--p-button-text-${severity}-color)`,
+        '--chip-normal': `var(--p-button-text-${severity}-hover-background)`,
+        '--chip-hover': `var(--p-button-text-${severity}-active-background)`,
+        '--chip-color': `var(--p-button-text-${severity}-color)`,
+        '--p-ripple-background': rippleColor ? `var(--chip-color)` : 'inherit'
+      }"
+      role="button"
+      tabindex="0"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  severity:    { type: String,  default: 'primary' },
-  static:      { type: Boolean, default: false },
+defineOptions({ inheritAttrs: true })
+defineProps({
+  severity: { type: String, default: 'primary' },
+  isStatic: { type: Boolean, default: false },
   rippleColor: { type: Boolean, default: false }
-});
+})
+const emits = defineEmits(['click'])
+
+function handleClick() {
+  emits('click')
+}
 </script>
 
 <style scoped>
 /* Estado por defecto (“tag”) */
 .chip-button {
   background-color: var(--chip-hover);
-  border: 0;
+  border: 1px solid transparent !important;
   border-radius: var(--p-tag-border-radius, 6px);
-  padding: 10px 12px;
+  padding: 0.5rem 0.75rem;
   cursor: pointer;
-  transition: background-color .15s;
+  transition: background-color 0.15s;
   user-select: none;
 }
 
@@ -48,34 +57,26 @@ const props = defineProps({
 }
 
 /* Hover con color-mix (añade un poco del color de texto) */
-@supports (background-color:color-mix(in srgb, black, white)) {
+@supports (background-color: color-mix(in srgb, black, white)) {
   .chip-button:not(.chip-static):hover {
-    background-color: color-mix(
-      in srgb,
-      var(--chip-hover) 90%,
-      var(--chip-color) 10%
-    );
+    background-color: color-mix(in srgb, var(--chip-hover) 90%, var(--chip-color) 10%);
   }
 }
-@supports not (background-color:color-mix(in srgb, black, white)) {
+@supports not (background-color: color-mix(in srgb, black, white)) {
   .chip-button:not(.chip-static):hover {
-    filter: brightness(.8);
+    filter: brightness(0.8);
   }
 }
 
 /* Active: intensifica un poco más */
-@supports (background-color:color-mix(in srgb, black, white)) {
+@supports (background-color: color-mix(in srgb, black, white)) {
   .chip-button:not(.chip-static):active {
-    background-color: color-mix(
-      in srgb,
-      var(--chip-hover) 90%,
-      var(--chip-color) 20%
-    );
+    background-color: color-mix(in srgb, var(--chip-hover) 90%, var(--chip-color) 20%);
   }
 }
-@supports not (background-color:color-mix(in srgb, black, white)) {
+@supports not (background-color: color-mix(in srgb, black, white)) {
   .chip-button:not(.chip-static):active {
-    filter: brightness(.9);
+    filter: brightness(0.9);
   }
 }
 

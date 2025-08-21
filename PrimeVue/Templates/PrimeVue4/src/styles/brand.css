@@ -1,0 +1,51 @@
+@theme {
+  ---color-brand-50:  #e6ebf3;
+  ---color-brand-100: #bccce2;
+  ---color-brand-200: #91aad0;
+  ---color-brand-300: #6688be;
+  ---color-brand-400: #3c66ac;
+  ---color-brand-500: #124499;
+  ---color-brand-600: #0e367a;
+  ---color-brand-700: #0a295c;
+  ---color-brand-800: #061b3d;
+  ---color-brand-900: #030e1f;
+  ---color-brand-950: #010712;
+
+  --p-brand-50: var(---color-brand-50);
+  --p-brand-100: var(---color-brand-100);
+  --p-brand-200: var(---color-brand-200);
+  --p-brand-300: var(---color-brand-300);
+  --p-brand-400: var(---color-brand-400);
+  --p-brand-500: var(---color-brand-500);
+  --p-brand-600: var(---color-brand-600);
+  --p-brand-700: var(---color-brand-700);
+  --p-brand-800: var(---color-brand-800);
+  --p-brand-900: var(---color-brand-900);
+  --p-brand-950: var(---color-brand-950);
+
+  --color-brand-50: var(---color-brand-50);
+  --color-brand-100: var(---color-brand-100);
+  --color-brand-200: var(---color-brand-200);
+  --color-brand-300: var(---color-brand-300);
+  --color-brand-400: var(---color-brand-400);
+  --color-brand-500: var(---color-brand-500);
+  --color-brand-600: var(---color-brand-600);
+  --color-brand-700: var(---color-brand-700);
+  --color-brand-800: var(---color-brand-800);
+  --color-brand-900: var(---color-brand-900);
+  --color-brand-950: var(---color-brand-950);
+}
+
+.dark {
+  ---color-brand-50:  #eef4ff;
+  ---color-brand-100: #d7e5ff;
+  ---color-brand-200: #b8d1ff;
+  ---color-brand-300: #94b9ff;  /* útil para bordes/labels */
+  ---color-brand-400: #74a2ff;  /* texto secundario / iconos */
+  ---color-brand-500: #5a91ff;  /* texto principal de marca (≥ ~6:1) */
+  ---color-brand-600: #467dff;  /* botones / links (hover sube luz) */
+  ---color-brand-700: #3a69dd;  /* estados activos / énfasis */
+  ---color-brand-800: #2d4ea2;  /* chips / badges sólidos */
+  ---color-brand-900: #223b78;  /* superficies sutiles */
+  ---color-brand-950: #17274e;  /* aún legible sobre #18181b */
+}

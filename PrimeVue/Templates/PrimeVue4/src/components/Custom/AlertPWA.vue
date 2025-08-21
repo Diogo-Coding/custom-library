@@ -1,9 +1,5 @@
 <template>
-  <pwa-install 
-    manifest-url="/manifest.webmanifest"
-    manual-chrome="true"
-    disable-screenshots="true"
-  ></pwa-install>
+  <pwa-install manifest-url="/manifest.webmanifest" manual-chrome="true" disable-screenshots="true"></pwa-install>
 </template>
 
 <script setup>
@@ -15,12 +11,12 @@ import { useAppStore } from '@/stores/app'
 const appStore = useAppStore()
 const isOpen = ref(true)
 const PWAStatus = computed(() => appStore.getPWAStatus)
-const PWAEvent  = computed(() => appStore.getPWAEvent)
+const PWAEvent = computed(() => appStore.getPWAEvent)
 
 onMounted(() => {
   const pwaElement = document.getElementsByTagName('pwa-install')[0]
 
-  pwaElement.addEventListener('pwa-user-choice-result-event', event => {
+  pwaElement.addEventListener('pwa-user-choice-result-event', (event) => {
     if (event.detail.message === 'dismissed') {
       isOpen.value = false
       appStore.setPWAStatus('PWA_IGNORED')
@@ -46,16 +42,14 @@ onMounted(() => {
 defineExpose({ isOpen, PWAEvent })
 </script>
 
-
 <style scoped>
 ion-toast {
   font-size: 14px;
   --border-radius: 12px;
-  --box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
-                rgba(0, 0, 0, 0.12) 0px 12px 30px, 
-                rgba(0, 0, 0, 0.12) 0px 4px 6px, 
-                rgba(0, 0, 0, 0.17) 0px 12px 13px, 
-                rgba(0, 0, 0, 0.09) 0px 3px 5px;}
+  --box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px 12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px 3px 5px;
+}
 #alert {
   height: 10px;
 }
@@ -103,6 +97,6 @@ ion-toast::part(button) {
   width: 100%;
   margin: 8px;
   color: var(--ion-color-spring);
-  background-color: rgba(var(--ion-color-spring-rgb), 0.1)
+  background-color: rgba(var(--ion-color-spring-rgb), 0.1);
 }
 </style>

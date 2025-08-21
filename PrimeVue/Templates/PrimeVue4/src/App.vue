@@ -18,7 +18,7 @@
 import Toast from 'primevue/toast'
 import { usePreferencesStore } from '@/stores/preferences'
 import { setSystemMode } from '@/utilities/preferencesUtils'
-import AlertPWA from './components/AlertPWA.vue'
+import AlertPWA from './components/Custom/AlertPWA.vue'
 
 const preferencesStore = usePreferencesStore()
 
@@ -30,5 +30,4 @@ mediaQuery.addEventListener('change', () => {
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
