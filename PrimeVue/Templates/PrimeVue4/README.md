@@ -1,5 +1,10 @@
 # Vue + PrimeVue Template
-Mainly made for PrimeVue 4 and Tailwind CSS with custom css, utilities and router predefined.
+Mainly made for PrimeVue 4 and Tailwind CSS with custom css, utilities and more.
+
+> This template is not finished, it is just a starting point for the
+> development of the project.
+>
+> If you want to use it, you can fork it and start your own project.
 
 ## Packages and info
 **Main packages:**
@@ -7,18 +12,23 @@ Mainly made for PrimeVue 4 and Tailwind CSS with custom css, utilities and route
 - Tailwind CSS
 - PrimeVue 4
 - Vite 5
+- Eslint & Prettier for Vue
   
 **Information:**
 - Dark mode
 - User prefrerences
 - Router transitions and animations
-- Custom scrollbar via css class
-- Updated to last packages available on day 20/09/2024
+- OverlayScrollbars
 - Normalize css
 - Auto import of PrimeVue components
-- FontAwesome icons and Components *(Only free icons)*
-- Custom build script
-- Small App version management
+- PrimeVue, Lucide and Tabler icons*
+- Custom build script for production
+- Small App internal version management
+- Lot of utility files
+- Lot of components presets
+- Custom PrimeVue Theme
+- KeepAlive Scroll script
+- Auto format code with Prettier
 
 ## Project setup
 ### Install dependencies

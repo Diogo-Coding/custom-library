@@ -362,7 +362,7 @@ function scrollTo(elementId) {
 .background-shadow-box {
   position: absolute;
   border-radius: 50%;
-  width: 100%;
+  width: 40vw;
   height: 80vh;
   filter: blur(120px);
   --shadow-box-color: #1089b933;
